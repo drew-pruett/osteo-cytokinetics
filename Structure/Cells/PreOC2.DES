@@ -5,14 +5,16 @@
   <var><name> TNFalpha </name></var>
   <var><name> factor </name></var> represents the weaker effect of RANKLsol on osteoclastogenesis
  <var><name> RANK </name></var>
-
+  <var><name> Gain </name></var>
+  <var><name> Diff </name></var>
+  <var><name> Apop </name></var>
 </variables>
 
 <equations>
  <diffeq>
   <name> PreOC2 </name>  
      <integralname> PreOC2 </integralname>
-     <initialval>10000 </initialval>
+     <initialval>100 </initialval>
      <dervname> Change </dervname>
      <errorlim> 100 </errorlim>
  </diffeq>
@@ -38,7 +40,10 @@
   <def><name> RankChange </name><val> 0 </val></def>
   <def><name> RANK </name><val> RANKExpression * PreOC2 </val></def>
 
-  <def><name> Change </name><val> 0</val></def>
+  <def><name> Gain </name><val> PreOC1.Diff </val></def>
+  <def><name> Diff </name><val> .000005 * PreOC2 </val></def>
+  <def><name> Apop </name><val> 0 </val></def>
+  <def><name> Change </name><val> Gain - Diff - Apop </val></def>
 </block>
 </definitions>
 
@@ -48,5 +53,8 @@
   1.  upreg of RANK expression in pure pops of oc precursors by tgfbeta1 (ref 172, 174 in tgfbeta1 to the bone) 
       NB: no blast precursors means no OPG, so this effectmight even out in vivo
 
+  2.  in the presence of osteoblasts, mononuclear Kat1-Ag expressing preosteoclasts (mononuclear progenitors) merge 
+       with existing osteoclasts within 24 hours.  Assume that this stage requires no activation energy, and is simply temporal
+       ref:  takami et al "requirement of osteoclastic cells for the fusion of preosteoclasts" J bone Miner Metab 16 (1998) 151-157
 
 -->

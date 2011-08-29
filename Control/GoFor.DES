@@ -48,5 +48,11 @@ HumMod / GoFor
   <menuitem> 1 month (30 d) </menuitem>
 </gofor>
 
+<gofor>
+  <solutionint> 256200 </solutionint>
+  <displayint> 25620 </displayint>
+  <menuitem> 6 month (30 d) </menuitem>
+</gofor>
+
 
 End         

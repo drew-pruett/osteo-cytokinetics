@@ -50,6 +50,40 @@ Solver : Digital Human (V1.0)
       </yaxis>
     </showgraph>
 
+   <showgraph>
+      <row>1</row>
+      <col>101</col>
+      <high>9</high>
+      <wide>40</wide>
+      <leftmargin>10</leftmargin>      
+      <xaxis>
+        <name>System.X</name>
+        <label>Minutes</label>
+        <scale><min> 0 </min><max> 60 </max></scale>
+      </xaxis>
+      <yaxis>
+        <yvar>
+          <name> PreOC1.PreOC1</name>
+          <label>cPreOC1</label>
+          <linecolor>RED</linecolor>
+        </yvar>
+        <yvar>
+          <name> PreOC2.PreOC2</name>
+          <label>PreOC2</label>
+          <linecolor> BLUE </linecolor>
+        </yvar>
+       <yvar>
+          <name> MacCell.MacCell</name>
+          <label>MacCell</label>
+          <linecolor> BLACK </linecolor>
+        </yvar>
+
+
+      <scale><min> 5 </min><max> 15 </max></scale>
+      </yaxis>
+    </showgraph>
+
+
     <showgraph>
       <row>1</row>
       <col>51</col>

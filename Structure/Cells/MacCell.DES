@@ -1,35 +1,31 @@
-<structure><name> MCS </name>
+<structure><name> MacCell </name>
 <variables>
   <var><name> MCSF </name></var>
+  <var><name> Diff </name></var>
+  <var><name> Apop </name></var>
+  <var><name>  Gain </name></var>
 </variables>
 
 <equations>
-<!--
+
  <diffeq>
   <name> MacCell </name>  
      <integralname> MacCell </integralname>
-     <initialval> 10000000 </initialval>
+     <initialval> 1000 </initialval>
      <dervname> Change </dervname>
-     <errorlim> 1000 </errorlim>
+     <errorlim> .01 </errorlim>
  </diffeq>
 
-<diffeq>
-  <name> PBMNC </name>  peripheral blood mononuclear cells
-     <integralname> PBMNC </integralname>
-     <initialval> 10000000 </initialval>
-     <dervname> Change </dervname>
-     <errorlim> 1000 </errorlim>
- </diffeq>
-
-
-
--->
 </equations>
 
 <definitions>
 <block><name> Dervs </name>
+
+  <def><name> Diff </name><val> MacCell * .0000005 </val></def>
+  <def><name> Apop </name><val> 0 </val></def>
+  <def><name> Gain </name><val> .0005 </val></def>
   
- <!-- <def><name> MCSF </name><val> MCSF.MCSF </val></def>-->
+ <def><name> Change </name><val> Gain - Apop - Diff </val></def>-->
 </block>
 </definitions>
 

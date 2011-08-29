@@ -27,7 +27,7 @@
     <integralname> Nuclei </integralname>
     <initialval> 9 </initialval>
     <dervname> NucleiChange </dervname>
-    <errorlim> .01 </errorlim>
+    <errorlim> .001 </errorlim>
   </diffeq>
 
   <diffeq>
@@ -43,7 +43,7 @@
  <block><name> Dervs </name>
    <def><name> Gain </name><val> 0 </val></def>
    <def><name> Loss </name><val> 0 </val></def>
-   <def><name> NGain </name><val> 0 </val></def>
+   <def><name> NGain </name><val> PreOC2.Diff - ( .0000556 * Nuclei ) </val></def>
    <def><name> NLoss </name><val> 0 </val></def>
 
    <def><name>Change </name><val> Gain - Loss </val></def>
@@ -66,5 +66,7 @@
         with blast activity of 2.9e-5 mm^2/day.
         mean rate of bone loss per day was 1.6e-4 \pm 3.4e-5 mm^2 /mm^2 total tissue
         (ref "Osteoblast and clast number and cell activity in PMO" Gruber et al, Miner Electrolyte Metab 12 (1986) 246-254)
+   3.  lose ~8% of nuclei per day
+        (ref Jaworski et al "kinetics of osteoclasts in secondary haversian systems" J Anat 133 (1981) 397-405.
 
 -->
