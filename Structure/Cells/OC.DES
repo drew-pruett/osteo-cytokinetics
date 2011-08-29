@@ -1,0 +1,70 @@
+
+
+<structure><name> OC </name>
+
+<variables>
+   <var><name> resorption </name></var>
+  <var><name> DailyResorption </name></var>
+   <var><name> ResorptiveCapacity </name></var>
+   <var><name> Gain </name></var>
+   <var><name> Loss </name></var>
+   <var><name> NGain </name></var>
+   <var><name> NLoss </name></var>
+
+</variables>
+
+<equations>
+  <diffeq>
+   <name> OC </name>  per BMU
+      <integralname> OC </integralname>
+      <initialval> 9.2 </initialval>
+      <dervname> Change </dervname>
+      <errorlim> .01 </errorlim>
+  </diffeq>
+
+  <diffeq>
+   <name> Nuclei </name> per clast
+    <integralname> Nuclei </integralname>
+    <initialval> 9 </initialval>
+    <dervname> NucleiChange </dervname>
+    <errorlim> .01 </errorlim>
+  </diffeq>
+
+  <diffeq>
+    <name> RANKExpression </name>  
+       <integralname> RANKExpression </integralname>
+       <initialval> 10 </initialval>
+       <dervname> RankChange </dervname>
+       <errorlim> .01 </errorlim>
+  </diffeq>
+</equations>
+
+<definitions>
+ <block><name> Dervs </name>
+   <def><name> Gain </name><val> 0 </val></def>
+   <def><name> Loss </name><val> 0 </val></def>
+   <def><name> NGain </name><val> 0 </val></def>
+   <def><name> NLoss </name><val> 0 </val></def>
+
+   <def><name>Change </name><val> Gain - Loss </val></def>
+   <def><name> NucleiChange </name><val> NGain - NLoss </val></def>
+
+   <def><name> ResorptiveCapacity </name><val> .00000002516 </val></def>
+   <def><name> resorption </name><val> BMU.BMU * Nuclei * OC * ResorptiveCapacity </val></def>
+  <def><name> DailyResorption </name><val> 1440 * resorption </val></def>
+   <def><name> RankChange </name><val> 0 </val></def>
+ </block>
+</definitions>
+
+</structure> 
+
+
+<!--
+  1.  in older bones with established marrow etc TGFbeta causes resorption to be increased at all concentrations 
+         (refs 162,1671 176-178 in tgfbeta1 to the bone)
+   2.  in postmenopausal osteoporosis (PMO) on the iliac crest, bone resorbed per day per osteoclast is 2.6e-4 mm^2, 
+        with blast activity of 2.9e-5 mm^2/day.
+        mean rate of bone loss per day was 1.6e-4 \pm 3.4e-5 mm^2 /mm^2 total tissue
+        (ref "Osteoblast and clast number and cell activity in PMO" Gruber et al, Miner Electrolyte Metab 12 (1986) 246-254)
+
+-->

@@ -1,0 +1,30 @@
+ HumMod / Cells DES
+
+Created : 
+Last Modified : 2011-01-04
+Author : Pruett
+Copyright : 2011
+By : University of Mississippi Medical Center
+
+<branch>
+  <name> CELLS </name>
+  <label> Cells </label>
+  <parent> MAINMENU </parent>
+</branch>
+
+<?path Display\Tree\Cells ?>
+
+<leaf>
+  <name> BoneCells </name>
+  <label> Bone Cells </label>
+  <parent> CELLS </parent>
+</leaf>
+
+<leaf>
+  <name> TCells </name>
+  <label> T Cells </label>
+  <parent> CELLS </parent>
+</leaf>
+
+
+End     

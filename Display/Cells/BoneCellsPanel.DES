@@ -1,0 +1,148 @@
+Vit D Panel
+
+Created : 2-Nov-10
+Last Modified : 2-Nov-10
+Author : W Pruett
+Copyright : 2010
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+<panel><name> BoneCells </name>
+
+<!--<structurename> Bone Cells </structurename>-->
+
+<showpanelname>
+  <row> 0.5 </row><col> 1.0 </col>
+</showpanelname>
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 2.0 </col>
+   <high> 39.0 </high>
+   <wide> 100.0 </wide>
+   <title> Bone Cells</title>
+
+
+    <showgraph>
+      <row>1</row>
+      <col>1</col>
+      <high>9</high>
+      <wide>40</wide>
+      <leftmargin>10</leftmargin>      
+      <xaxis>
+        <name>System.X</name>
+        <label>Minutes</label>
+        <scale><min> 0 </min><max> 60 </max></scale>
+      </xaxis>
+      <yaxis>
+        <yvar>
+          <name> OC.OC</name>
+          <label>clasts/BMU</label>
+          <linecolor>RED</linecolor>
+        </yvar>
+        <yvar>
+          <name> OC.Nuclei</name>
+          <label>Nuclei / BMU</label>
+          <linecolor> BLUE </linecolor>
+        </yvar>
+
+      <scale><min> 5 </min><max> 15 </max></scale>
+      </yaxis>
+    </showgraph>
+
+    <showgraph>
+      <row>1</row>
+      <col>51</col>
+      <high>9</high>
+      <wide>40</wide>
+      <leftmargin>10</leftmargin>      
+      <xaxis>
+        <name>System.X</name>
+        <label>Minutes</label>
+        <scale><min> 0 </min><max> 60 </max></scale>
+      </xaxis>
+      <yaxis>
+        <yvar>
+          <name> PreOB.PreOB</name>
+          <label>pre-blasts</label>
+          <linecolor>RED</linecolor>
+        </yvar>
+        <yvar>
+          <name>OB.OB</name>
+          <label>blasts </label>
+          <linecolor>BLUE</linecolor>
+        </yvar>
+      <scale><min> 0 </min><max> 200 </max></scale>
+      </yaxis>
+    </showgraph>
+
+    
+    <showgraph>
+      <row>10</row>
+      <col>1</col>
+      <high>9</high>
+      <wide>40</wide>
+      <leftmargin>10</leftmargin>
+      
+      <xaxis>
+        <name>System.X</name>
+        <label>Minutes</label>
+      </xaxis>
+      
+      <yaxis>
+        <yvar>
+          <name> CalcBone.Mass</name>
+          <label>Bone mass </label>
+          <linecolor>RED</linecolor>
+        </yvar>
+ 
+      </yaxis>
+    </showgraph>
+
+    <showgraph>
+      <row>10</row>
+      <col>51</col>
+      <high>9</high>
+      <wide> 45</wide>
+      <leftmargin>15 </leftmargin>
+      
+      <xaxis>
+        <name>System.X</name>
+        <label>Minutes</label>
+      </xaxis>
+      
+      <yaxis>
+        <yvar>
+          <name> UncalcBone.Mass</name>
+          <label>Uncalcified mass </label>
+          <linecolor>RED</linecolor>
+        </yvar>
+ 
+      </yaxis>
+    </showgraph>
+
+<showvalue>
+  <row> 20 </row><col> 1 </col>
+  <name> BMU.BMU </name>
+  <label> #BMU </label>
+</showvalue>
+
+<showvalue>
+  <row> 21 </row><col> 1 </col>
+  <name> OC.resorption </name>
+  <label> resorption </label>
+</showvalue>
+
+<showvalue>
+  <row> 22 </row><col> 1 </col>
+  <name> OC.DailyResorption </name>
+  <label> daily res </label>
+</showvalue>
+
+</groupbox>
+</panel>
+
+End
+                                                                                                                                                                                                                       
+   
+                                                                            

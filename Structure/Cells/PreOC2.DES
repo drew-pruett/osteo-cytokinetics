@@ -1,0 +1,52 @@
+<structure><name> PreOC2 </name>
+<variables>
+  <var><name> MCSF </name></var>
+  <var><name> RANKL </name></var>
+  <var><name> TNFalpha </name></var>
+  <var><name> factor </name></var> represents the weaker effect of RANKLsol on osteoclastogenesis
+ <var><name> RANK </name></var>
+
+</variables>
+
+<equations>
+ <diffeq>
+  <name> PreOC2 </name>  
+     <integralname> PreOC2 </integralname>
+     <initialval>10000 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> 100 </errorlim>
+ </diffeq>
+
+<diffeq>
+  <name> RANKExpression </name>  
+     <integralname> RANKExpression </integralname>
+     <initialval> 100 </initialval>
+     <dervname> RankChange </dervname>
+     <errorlim> 1 </errorlim>
+ </diffeq>
+
+
+
+</equations>
+
+<definitions>
+
+<block><name> Dervs </name>
+  <def><name> factor </name><val> PreOC1.factor </val></def>
+  <def><name> RANKL</name><val> OB.RANKLmb + ( factor * RANKLsol.RANKLsol )</val></def>
+
+  <def><name> RankChange </name><val> 0 </val></def>
+  <def><name> RANK </name><val> RANKExpression * PreOC2 </val></def>
+
+  <def><name> Change </name><val> 0</val></def>
+</block>
+</definitions>
+
+</structure>
+
+<!--
+  1.  upreg of RANK expression in pure pops of oc precursors by tgfbeta1 (ref 172, 174 in tgfbeta1 to the bone) 
+      NB: no blast precursors means no OPG, so this effectmight even out in vivo
+
+
+-->

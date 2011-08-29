@@ -1,0 +1,22 @@
+<structure><name> OPG </name>
+<variables>
+  <var><name> 1_25OH2D3 </name><var>
+
+</variables>
+
+<equations>
+
+</equations>
+
+<definitions>
+<block><name> Dervs </name>
+
+</definitions>
+
+</structure>
+
+<!--
+  1.  OPG-RANKL affinity is 23 nM  ref:  Vitovski et al: "investigating the interaction between OPG and RANKL or TRAIL..."
+      JBC 282 (2007) 31601-31609
+
+-->

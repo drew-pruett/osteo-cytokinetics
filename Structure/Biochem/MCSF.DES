@@ -1,0 +1,31 @@
+<structure><name> MCSF </name>
+<variables>
+<var><name>[MCSF] </name></var>
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> MCSF </name>  
+     <integralname> MCSF </integralname>
+     <initialval> 300 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> 1 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+<block><name> Dervs </name>
+<def><name> Change </name><val> 0 </val></def>
+ <def><name> [MCSF] </name><val> MCSF / 3 </val></def>
+</block>
+</definitions>
+
+</structure>
+
+<!--
+   1.  Dose dependent inhibition by TGFbeta1:  ref 166 in "TGFbeta1 to the bone"
+
+
+-->

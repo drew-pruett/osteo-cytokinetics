@@ -1,0 +1,26 @@
+<structure><name> TNF </name>
+<variables>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> TNF </name>  
+     <integralname> TNF </integralname>
+     <initialval> 100 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> 1 </errorlim>
+ </diffeq>
+
+
+</equations>
+
+<definitions>
+<block><name> Dervs </name>
+<def><name> Change </name><val> 0 </val></def>
+</block>
+
+</definitions>
+
+</structure>

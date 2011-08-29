@@ -1,0 +1,23 @@
+<structure><name> BMP </name>
+<variables>
+<var><name> [BMP] </name></var>
+</variables>
+
+<equations>
+<diffeq>
+  <name> BMP </name>  
+     <integralname> BMP </integralname>
+     <initialval> 100 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> 1 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions><block><name> Dervs </name>
+<def><name> Change </name><val> 0 </val> </def>
+<def><name> [BMP] </name><val> BMP / 3 </val></def>
+</block>
+</definitions>
+
+</structure>

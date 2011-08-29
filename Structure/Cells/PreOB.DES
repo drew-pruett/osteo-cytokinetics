@@ -1,0 +1,61 @@
+<structure><name> PreOB </name>
+
+<variables>
+
+  <var><name> RANKLmb </name><val>100</val></var>
+  <var><name> MCSF </name></var>
+  <var><name> TGFbeta </name></var>
+  <var><name> OPG </name></var>
+  <var><name> kd </name></var>
+  <var><name> Gain </name></var>
+  <var><name> Loss </name></var>
+
+  <var><name> 1_25OH2D3 </name></var>
+
+</variables>
+
+<equations>
+
+ <diffeq>
+  <name> PreOB </name>  
+     <integralname> PreOB </integralname>
+     <initialval> 500 </initialval>   <!--<2x number blasts per BMU-->
+     <dervname> Change </dervname>
+     <errorlim> 5 </errorlim>
+ </diffeq>
+
+<diffeq>
+  <name> RANKLmbExpression </name>  
+     <integralname> RANKLmbExpression </integralname>
+     <initialval> 1 </initialval>
+     <dervname> RLmbChange </dervname>
+     <errorlim> .001 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+<block><name> Dervs </name>
+
+<def><name> kd </name><val> .0000334 </val></def>
+<def><name> Gain </name><val> 0 </val></def>
+<def><name> Loss </name><val> kd * PreOB </val></def>
+
+<def><name> Change </name><val> 0 * ( Gain - Loss ) </val></def>
+<def><name> RLmbChange </name> <val> 0 </val></def>
+<def><name> RANKLmb </name><val> RANKLmbExpression  * PreOB </val></def>
+
+<!--
+  <def><name> 1_25OH2D3 </name><val>1_25OH2D3.1_25_OH2D3</val></def>
+   low level expression of OCN
+   reg expression of TGFbeta (TGFbeta chapter in Principles of Bone Bio)
+-->
+
+</block>
+</definitions>
+
+</structure>
+
+<!--   ordinarily, pre osteoblastic stromal cells make up about 5-10xe-6 of the nucleated cells of 
+        unfractionated marrow ( LT 1% of stromal layer)
+-->

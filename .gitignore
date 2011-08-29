@@ -1,0 +1,5 @@
+*.INI
+*.ini
+Model\ Solver.DES/
+DESolver.DES
+Model\ Solver.exe/

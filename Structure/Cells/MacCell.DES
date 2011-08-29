@@ -1,0 +1,55 @@
+<structure><name> MCS </name>
+<variables>
+  <var><name> MCSF </name></var>
+</variables>
+
+<equations>
+<!--
+ <diffeq>
+  <name> MacCell </name>  
+     <integralname> MacCell </integralname>
+     <initialval> 10000000 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> 1000 </errorlim>
+ </diffeq>
+
+<diffeq>
+  <name> PBMNC </name>  peripheral blood mononuclear cells
+     <integralname> PBMNC </integralname>
+     <initialval> 10000000 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> 1000 </errorlim>
+ </diffeq>
+
+
+
+-->
+</equations>
+
+<definitions>
+<block><name> Dervs </name>
+  
+ <!-- <def><name> MCSF </name><val> MCSF.MCSF </val></def>-->
+</block>
+</definitions>
+
+</structure>
+
+<!--
+  1. low conc (1-100 pg/mL) TGFbeta stimulates mac cell generation:  stimulation of ERK pathway
+      high conc (.1 ng/mL) inhibits formation:  stimulation of p38 MAPK
+         (refs 159-162 in "TGFbeta1 to the bone"
+
+  2. high levels of TGFbeta1 present in initial part of culture period vastly increase RANKL/MCSF induced 
+      mac cell formation and bone resorption in lymphocyte rich population (endosteal surface) 
+      in a lymphocyte poor or pure monocyte pop, clast formation was only somewhat enhanced by tgfbeta
+          (refs 91,168 in "TGFbeta1 to the bone")
+
+  3.  when TGFbeta1 is applied for the entire culture period (28d) or applied later in diff, the effect levels out
+         (ref 91 in tgfbeta1 to the bone)
+
+  4. upreg of RANK expression in pure pops of oc precursors by tgfbeta1 (ref 172, 174 in tgfbeta1 to the bone) 
+      NB: no blast precursors means no OPG, so this effectmight even out in vivo
+
+
+-->

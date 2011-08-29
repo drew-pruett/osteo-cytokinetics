@@ -1,0 +1,75 @@
+<structure><name> OB </name>
+<variables>
+  <var><name> RANKLmb </name><val> 100 </val></var>
+  <parm><name> kd </name><val> .0000556 </val></parm>
+  <var><name> MCSF </name></var>
+  <var><name> TGFbeta </name></var>
+  <var><name> 1_25OH2D3 </name></var>
+  <var><name> OPG_secretion </name></var>
+ <var><name> PTH </name></var>
+  <var><name> production </name><val> .002</val></var>
+  <var><name> MatrixPerBlast </name><val>.00000000521 </val></var>
+  <var><name> TGFsecretion </name><val> .00001 </val></var>
+</variables>
+
+<equations>
+ <diffeq>
+  <name> OB </name>  
+     <integralname> OB </integralname>
+     <initialval> 300 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> 3 </errorlim>
+ </diffeq>
+
+<diffeq>
+  <name> RANKLmbExpression </name>  
+     <integralname> RANKLmbExpression </integralname>
+     <initialval> 1 </initialval>
+     <dervname> RLmbChange </dervname>
+     <errorlim> .001 </errorlim>
+ </diffeq>
+
+
+
+</equations>
+
+<definitions>
+<block><name> Dervs </name>
+
+<def><name> MatrixPerBlast </name><val> .000000006944 </val></def>
+<def><name> production </name> <val> OB * MatrixPerBlast * BMU.BMU</val></def>
+<def><name> Change </name><val>  1 * ( PreOB.Loss - ( kd * OB ) ) </val></def>
+  <def><name> RLmbChange </name><val> 0 * ( RANKLmbExpression - 1 ) </val></def>
+  <def><name> RANKLmb </name><val> RANKLmbExpression * OB </val></def>
+
+
+
+
+<!--<def><name> 1_25OH2D3 </name><val>1_25OH2D3.1_25_OH2D3</val></def>
+
+RANKL expression is a function of PTH, vitD, TGFbeta1
+OPG goes up in the presence of vitD and TGFbeta1 
+TNFalpha increases RANKLmb; mRNA increases 1.9x in 9nMol TNFa
+
+  1. TGFbeta1 increases expression of OPG, decreases exp of RANKL:  
+          ref:  Takai H, Kanematsu M, Yano K, Tsuda E, Higashio K, Ikeda K, Watanabe K, Yamada Y 1998 
+          9 fold induction, sigmoidal w/set poin ~.3 ng/ml
+          "Transforming growth factor- stimulates the production of osteoprotegerin/osteoclastogenesis inhibitory factor by bone marrow stromal cells."
+          J Biol Chem 273:27091–27096
+  2.  Low TGFbeta stimulates RANKL, High TGFbeta stimulates OPG:
+          ref:  Karst et al, J Cell Physiol 200 (2004) 99-106
+
+
+
+high expression of OCN (TGFbeta chap in Principles of bone biology)
+-->
+</block>
+</definitions>
+
+</structure>
+<!--
+
+  1.  assume an osteoblast life span of 300 hours:(1/300*60)=.0000556  Jilka et al, "Osteoblast programmed cell death (apoptosis): modulation by growth factors and cytokines" J Bone Miner Res 1998, 13.  793-802
+   2.  
+
+-->

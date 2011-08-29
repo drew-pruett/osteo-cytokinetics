@@ -1,0 +1,29 @@
+
+
+<structure><name> BMU </name>
+
+<variables>
+   <var><name> Gain </name></var>
+  <var><name> Loss </name></var>
+</variables>
+
+<equations>
+ <diffeq>
+  <name> BMU </name>  
+     <integralname> BMU </integralname>
+     <initialval> 1000000 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> 100 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+ <block><name> Dervs </name>
+   <def><name> Gain </name><val> 0 </val></def>
+   <def><name> Loss </name><val> 0 </val></def>
+   <def><name>Change </name><val> Gain - Loss </val></def>
+ </block>
+</definitions>
+
+</structure>

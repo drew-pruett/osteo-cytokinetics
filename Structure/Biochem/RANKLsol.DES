@@ -1,0 +1,24 @@
+<structure><name> RANKLsol </name>
+<variables>
+
+</variables>
+
+<equations>
+<diffeq>
+  <name> RANKLsol </name>  
+     <integralname> RANKLsol </integralname>
+     <initialval> 10 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> .1 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+<block><name>Dervs </name>
+
+<def><name> Change </name><val> 0 </val> </def>
+</block>
+</definitions>
+
+</structure>

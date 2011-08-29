@@ -1,0 +1,41 @@
+<structure><name> UncalcBone </name>
+<variables>
+
+</variables>
+
+<equations>
+<diffeq>
+  <name> Mass </name>  
+     <integralname> Mass </integralname>
+     <initialval> 3000 </initialval>  <!-- mg-->
+     <dervname> Change </dervname>
+     <errorlim> .003 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+<block><name> Dervs </name>
+
+<def><name> Change </name><val> 1 * (  OB.production - ( .0006944 * Mass ) ) </val></def>
+</block>
+</definitions>
+
+</structure>
+
+<!--
+  14% of body weight is skeleton.
+   in a 70 kg man, this is ~10 kg.
+   then Ca is 10% of skeleton weight.
+   Assuming all mineralized tissue is hydroxyapatite, then 9% of skeleton weight is phosphate.
+   without that assumption, it is safe to assume that 10% of skeleton weight is PO4
+   if 'clasts resorb 300 mg of calcium per day, they resorb 3 g of bone per day.
+   in one year, this is ~1.09 kg, corresponding to ~10 kg ion 10 years, i.e. total remodeling in 10 years.
+
+   so 200 ng of activatable(?) TGFbeta are released each day from bone, i.e. .1389 ng/min.
+   This is released in the resorption space.
+   Assume it is all bound in the resorption space.
+   NEED VOLUME OF RESORPTION SPACE TO DETERMINE ACTIVE CONCENTRATION. 
+   ALSO NEED BLOOD FLOW PER BMU PER MINUTE TO DETERINE WASHOUT AND NONLOCAL CONTRIBUTION
+   If we assume there is no non-local contribution of TGFbeta to developing bone, this means that the BMU are secreting .1389 ng/min of 
+-->

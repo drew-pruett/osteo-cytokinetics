@@ -1,0 +1,22 @@
+
+<?xml version='1.0' ?>
+
+<model>
+  <title>
+    <basic>Triad</basic>
+    <navigator>HumMod - Triad</navigator>
+  </title>
+  
+  <?include Structure\Structure.des ?>
+  
+  <math>
+    <parms>Structure.Parms</parms>
+    <dervs>Structure.Dervs</dervs>
+    <wrapup>Structure.Wrapup</wrapup>
+  </math>
+  
+
+  <?include Control\Control.des ?>
+  <?include Display\Display.des ?>
+
+</model>

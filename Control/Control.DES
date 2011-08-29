@@ -1,0 +1,21 @@
+ HumMod / Control
+
+Created : 
+Last Modified : 4-Jan-11
+Author : Pruett
+Copyright : 2011
+By : University of Mississippi Medical Center
+Solver : DES 2005
+Schema : 2005.0
+
+<control>
+
+<?path Control ?>
+
+<?include GoFor.DES ?>
+
+<!--<?include SettlingTime.DES ?>-->
+
+</control>
+
+End      
