@@ -27,7 +27,7 @@
     <integralname> Nuclei </integralname>
     <initialval> 9 </initialval>
     <dervname> NucleiChange </dervname>
-    <errorlim> .01 </errorlim>
+    <errorlim> .001 </errorlim>
   </diffeq>
 
   <diffeq>
@@ -43,7 +43,7 @@
  <block><name> Dervs </name>
    <def><name> Gain </name><val> 0 </val></def>
    <def><name> Loss </name><val> 0 </val></def>
-   <def><name> NGain </name><val> 0 </val></def>
+   <def><name> NGain </name><val> PreOC2.Diff - ( .0000556 * Nuclei ) </val></def>
    <def><name> NLoss </name><val> 0 </val></def>
 
    <def><name>Change </name><val> Gain - Loss </val></def>
@@ -68,4 +68,6 @@
         (ref "Osteoblast and clast number and cell activity in PMO" Gruber et al, Miner Electrolyte Metab 12 (1986) 246-254)
    3.  Nuclei have lifetimes of about 12.5 days in active cutting cones.  (ref 115 of "Prac modeling concepts for connetive
         tissue stem cell and progenitor compartment kinetics" Muschler et al, J Biomed Biotech 2003 170-193
+   .  lose ~8% of nuclei per day
+        (ref Jaworski et al "kinetics of osteoclasts in secondary haversian systems" J Anat 133 (1981) 397-405.
 -->
