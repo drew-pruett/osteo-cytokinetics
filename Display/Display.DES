@@ -1,0 +1,33 @@
+HumMod / Display
+
+Created : 04-Jan-11
+Last Modified : 04-Jan-11
+Author : Pruett
+Copyright : 2011
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+<?path Display ?>
+
+<display>
+
+<common>
+
+<addarrowsnewline/>
+
+<?include Tree\Tree.DES ?>
+<?include Common.DES ?>
+
+</common>
+
+<?include Biochem\Biochem.DES ?>
+<?include Cells\Cells.DES ?>
+
+
+<common>
+  <displayfirst> BoneCells  </displayfirst>
+</common>
+
+</display>
+
+End                 

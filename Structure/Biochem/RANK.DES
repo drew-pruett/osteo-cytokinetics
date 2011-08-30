@@ -1,0 +1,16 @@
+<structure><name> RANK </name>
+<variables>
+<var><name> RANK </name></var>
+</variables>
+
+<equations>
+</equations>
+
+<definitions>
+<block><name> Dervs </name>
+<def><name> Change </name><val> 0 </val></def>
+<def><name> RANK </name><val> 0 * ( OC.RANK + PreOC1.RANK + PreOC2.RANK ) </name> 
+</block>
+</definitions>
+
+</structure>

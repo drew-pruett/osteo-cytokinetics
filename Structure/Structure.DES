@@ -1,0 +1,55 @@
+
+
+<?path Structure?>
+
+<?include Cells/PreOB.DES ?>
+<?include Cells/OB.DES ?>
+<?include Cells/MacCell.DES ?>
+<?include Cells/PreOC1.DES ?>
+<?include Cells/PreOC2.DES ?>
+<?include Cells/OC.DES ?>
+<?include Cells/BMU.DES ?>
+
+<?include Biochem/MCSF.DES ?>
+<?include Biochem/RANKLsol.DES?>
+<?include Biochem/RANKLmb.DES ?>
+<?include Biochem/TGF.DES ?>
+
+<?include Gross/UncalcBone.DES ?>
+<?include Gross/CalcBone.DES ?>
+
+<structure>
+  <name> Structure </name>
+  <definitions>
+  
+  <block><name> Parms </name>
+
+  </block>
+
+  <block><name> Dervs </name>
+  <call> MCSF.Dervs </call>
+  <call> PreOB.Dervs </call>
+  <call> OB.Dervs </call>
+  <call> RANKLsol.Dervs </call>
+  <call> RANKLmb.Dervs </call>
+  <call> BMU.Dervs </call>
+  <call> MacCell.Dervs </call>
+  <call> PreOC1.Dervs </call>
+  <call> PreOC2.Dervs </call>
+  <call> OC.Dervs </call>
+  <call> TGF.Dervs </call>
+  <call> UncalcBone.Dervs </call>
+  <call> CalcBone.Dervs </call>
+
+  </block>
+
+
+  <block><name> Wrapup </name>
+
+  </block>
+
+  </definitions>
+</structure>
+
+
+

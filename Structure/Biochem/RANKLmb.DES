@@ -1,0 +1,17 @@
+<structure><name> RANKLmb </name>
+<variables>
+<var><name> expression </name><val> 1 </val></var>
+<var><name> RankLmb </name><val> 0 </val></var>
+</variables>
+
+<equations>
+
+</equations>
+
+<definitions>
+<block><name> Dervs </name>
+<def><name> RankLmb </name><val> 0 * ( OB.RANKLmb + PreOB.RANKLmb )</val></def>
+</block>
+</definitions>
+
+</structure>

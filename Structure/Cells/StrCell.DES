@@ -1,0 +1,45 @@
+<structure><name> StrCell </name>
+
+<variables>
+  <var><name> RANKL </name></var>
+  <var><name> MCSF </name></var>
+  <var><name> TGFbeta </name></var>
+  <var><name> 1_25OH2D3 </name></var>
+  <var><name> OPG </name></var>
+
+</variables>
+
+<equations>
+<!-- <diffeq>
+  <name> StrCell </name>  
+     <integralname> StrCell </integralname>
+     <initialval> 1000000 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> 100 </errorlim>
+ </diffeq>
+-->
+</equations>
+
+
+<definitions>
+<block><name> Dervs </name>
+<!--
+<def><name> 1_25OH2D3 </name><val>1_25OH2D3.1_25_OH2D3</val></def>
+
+TNFa increases RANKL mRNA steady state expression 4.1x 9 nMol, with 5nMol IL1
+TGFbeta upregs OPG time and dose dependently:  .2ng/L; max response at 2 ng/L
+-->
+</block>
+</definitions>
+
+</structure>
+
+stromal cells advance by:
+1. regulated self renewal 
+2. fate choice/commitment
+   modulate by:  1. glucocorticoids
+                         2. PTH, PTH1r
+                         3. TGFbeta, TGFbetaR
+                         4. PGE2
+                         5. Leptin
+                         6. BMPs

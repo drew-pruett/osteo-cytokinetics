@@ -1,0 +1,79 @@
+<structure><name> TGF </name>
+<variables>
+  <var><name> LatentCirculatingShort </name><val> 20 </val></var>
+  <var><name> LatentCirculatingLong </name><val> 50 </val></var>
+  <var><name> BoneConcentration </name><val> 200 </val></var> ng/g=pg/mg
+  <var><name> secretion </name></var>
+  <var><name> CircActiveTGFGain </name></var>
+  <var><name> CircActiveTGFExchange </name></var>
+  <parm><name> CircActiveDecay </name><val> .277 </val></parm>
+  <var><name> [TGFs] </name></var>
+  <var><name> [TGFost]</name></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> BoneContent </name>  
+     <integralname> BoneContent </integralname>
+     <initialval> 200 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> 1 </errorlim>
+ </diffeq>
+
+<diffeq>
+  <name> OsteonalTGF </name>  
+     <integralname> OsteonalTGF </integralname>
+     <initialval> 50 </initialval>
+     <dervname> OsteonalChange </dervname>
+     <errorlim> .1 </errorlim>
+ </diffeq>
+
+<diffeq>
+  <name> CirculatingActiveTGF </name>  
+     <integralname> CirculatingActiveTGF </integralname>
+     <initialval> 1500 </initialval>
+     <dervname> CircActiveTGFChange </dervname>
+     <errorlim> .1 </errorlim>
+ </diffeq>
+
+</equations>
+
+NEED TO CONVERT TGFBETA/UNIT WT BONE TO TGFBETA/UNIT VOLUE; COMPARE TO OSTEONAL CONCENTRATION.  SAME?
+THIS WILL GIVE THE "CAPTURE FACTOR"
+
+<definitions>
+<block><name> Dervs </name>
+  
+  <def><name> [TGFs] </name><val> CirculatingActiveTGF / 3000 MAX 0 </val></def>
+  <def><name> [TGFost] </name><val> OsteonalTGF / BMU.OsteonVolume MAX 0 </val></def>
+  <def><name> CircActiveTGFExchange </name><val> .5 * ( OsteonalTGF - ( 50 * [TGFs] ) ) / ( 50 + BMU.OsteonVolume )</val></def> <!-- here we assume that TGF can freely exchange with the serum compartment-->
+  <def><name> CircActiveTGFChange </name><val> CircActiveTGFExchange - ( CircActiveDecay * CirculatingActiveTGF ) </val></def>
+  <def><name> BoneConcentration </name><val> BoneContent / ( CalcBone.Mass + UncalcBone.Mass ) </val></def>
+  <def><name> Change </name><val> 0 * ( OB.production * ( ( .025 * 5 * LatentCirculatingShort ) + ( OB.OB * OB.TGFsecretion ) ) - ( OC.resorption * BoneConcentration ) )</val></def>
+  <def><name> OsteonalChange </name><val> ( OC.resorption * BoneContent / 1000 ) - CircActiveTGFExchange </val></def>
+</block>
+</definitions>
+
+</structure>
+
+<!--
+   1.  a.  TGFbeta~TGFbetaRn affinity is ~177nM^-1  
+        b.  expect 12k receptors per cell (normal), 29k in osteogenesis imperfecta
+        c.  
+        s.  "Increased cell surface expression of receptors for transforming growth factor-beta on 
+            osteoblasts from patients with Osteogenesis imperfecta."  Gebken et al, Pathbiology 68 (2000) 106-112
+   2.  there is a positive correlation between age and number of TGFbeta receptors in blasts.  "Age-related differences in the expression of 
+            receptors for TGF-beta in human osteoblast-like cells in vitro."  Batge et al, Exp Clin Endocrin Diabetes 108 (2000) 311-315
+   3.  classically, TGFbeta is considered a macrophage deactivator.  in particular, in the onset of an infection, IFNgamma and IFNbeta, potent 
+        inhibitors of clastogenesis, are secreted by immune cells to deal with the infection itself.  As the infection progresses, TGFbeta is secreted 
+        and acts to clear the cytotoxic cytokines and allow tissue repair to begin.  Importantly, preincubation with TGFbeta prevents INFgamma/beta 
+        from commiting precursors to macrophage cell lines.  Coincubation with TGFbeta suppresses the anti-clastic activity of the IFNgamma/beta.
+        BRIEFLY, TGFbeta STABILIZES THE PRE-PRECURSOR CELL POPULATION FOR ACTIVATION BY RANK/RANKL
+           (ref Fox et al "Current insights into the role of TGFbeta in bone resorption" Mol Cell Endocrin 243 (2005) 19-26)
+   4.   IL-13 (fibrosis source in autoimmune disease) induces TGFbeta secretion
+   5.  TGF up-regs synthesis of chondroitan sulfate, proteoglycan.  (ref 18 in "TGFbeta, bone connection")
+
+
+-->

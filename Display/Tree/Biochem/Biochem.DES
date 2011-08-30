@@ -1,0 +1,30 @@
+ HumMod / Biochem DES
+
+Created : 
+Last Modified : 2011-01-04
+Author : Pruett
+Copyright : 2011
+By : University of Mississippi Medical Center
+
+<branch>
+  <name> BIOCHEM </name>
+  <label> Biochem </label>
+  <parent> MAINMENU </parent>
+</branch>
+
+<?path Display\Tree\Biochem ?>
+
+<leaf>
+  <name> RANKAXIS </name>
+  <label> RANK/RANKL/OPG </label>
+  <parent> BIOCHEM </parent>
+</leaf>
+
+<leaf>
+  <name> CYTOKINES </name>
+  <label> Cytokines </label>
+  <parent> BIOCHEM </parent>
+</leaf>
+
+
+End     

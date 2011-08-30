@@ -1,0 +1,58 @@
+HumMod / GoFor
+
+   Created : 12-Mar-07
+   Last Modified : 2010-05-28
+   Author : Tom Coleman
+   Copyright : 2006-2010
+   By : University of Mississippi Medical Center
+
+<gofor>
+  <solutionint> 1 </solutionint>
+  <displayint> 1 </displayint>
+  <menuitem> 1 Minute </menuitem>
+</gofor>
+
+<gofor>
+  <solutionint> 60 </solutionint>
+  <displayint> 1 </displayint>
+  <menuitem> 1 Hour </menuitem>
+</gofor>
+
+<gofor>
+  <solutionint> 120 </solutionint>
+  <displayint> 5 </displayint>
+  <menuitem> 2 Hours </menuitem>
+</gofor>
+
+<gofor>
+  <solutionint> 360 </solutionint>
+  <displayint> 15 </displayint>
+  <menuitem> 6 Hours </menuitem>
+</gofor>
+
+<gofor>
+  <solutionint> 1440 </solutionint>
+  <displayint> 60 </displayint>
+  <menuitem> 1 Day </menuitem>
+</gofor>
+
+<gofor>
+  <solutionint> 10080 </solutionint>
+  <displayint> 360 </displayint>
+  <menuitem> 1 Week </menuitem>
+</gofor>
+
+<gofor>
+  <solutionint> 43200 </solutionint>
+  <displayint> 1440 </displayint>
+  <menuitem> 1 month (30 d) </menuitem>
+</gofor>
+
+<gofor>
+  <solutionint> 256200 </solutionint>
+  <displayint> 25620 </displayint>
+  <menuitem> 6 month (30 d) </menuitem>
+</gofor>
+
+
+End         

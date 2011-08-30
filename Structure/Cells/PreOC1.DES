@@ -1,0 +1,61 @@
+<structure><name> PreOC1 </name>
+<!--
+Defn: circulating nonproliferating monocyte awaiting signal to join BMU; peripheral blood mononuclear cells (PBMNC)
+-->
+<variables>
+  <var><name> MCSF </name></var>
+  <var><name> RANKL </name></var>
+  <var><name> RANK </name></var>
+  <var><name> TNFalpha </name></var>
+  <parm><name> factor </name><val> .85 </val></parm> represents the weaker effect of RANKLsol on osteoclastogenesis
+  <var><name> RANKmb </name></var>
+  <var><name> Apop </name></var>
+  <var><name> Diff </name></var>
+  <var><name> Population </name></var>
+</variables>
+
+<equations>
+
+ <diffeq>
+  <name> PreOC1 </name>  
+     <integralname> PreOC1 </integralname>
+     <initialval> 539 </initialval><!-- per cubic mm of blood -->
+     <dervname> Change </dervname>
+     <errorlim> 1 </errorlim>
+ </diffeq>
+
+<diffeq>
+  <name> RANKExpression </name>  
+     <integralname> RANKExpression </integralname>
+     <initialval> 1 </initialval>
+     <dervname> RankChange </dervname>
+     <errorlim> .001 </errorlim>
+ </diffeq>
+
+
+</equations>
+
+<definitions>
+<block><name> Dervs </name>
+  <def><name> Population </name><val> PreOC1 * 5000 * 1000 </val></def>
+  <def><name> Apop </name><val> 0 </val></def>
+  <def><name> Diff </name><val> ( Population * .000000185 ) / BMU.BMU </val></def>.000000185=.0005/2695; .0005=Preoc2.Loss/minute at ss
+  <def><name> Change </name><val> MacCell.Diff - Apop - Diff  </val> </def>
+
+  <def><name> RankChange </name><val> 0 </val> </def>
+  <def><name> RANKmb </name><val> PreOC1 * RANKExpression </val></def>
+
+  <def><name> RANK </name><val> PreOC1 * RANKExpression </val></def>
+</block>
+</definitions>
+
+</structure>
+
+<!--
+ 1.  upreg of RANK expression in pure pops of oc precursors by tgfbeta1 (ref 172, 174 in tgfbeta1 to the bone) 
+      NB: no blast precursors means no OPG, so this effect might even out in vivo
+
+ 2.  in women, average value of 539 cells/mm^3=539000 cells /ml
+      ref:  Li et al, " Elevated circulating inflammatory markers in female patients with cardiac system X" Cytokine 40 (2007) 172-176
+
+-->
