@@ -1,4 +1,7 @@
 <structure><name> MCS </name>
+<!--
+Def',:  committed macrophage forming progenitor; proliferating assymmetrically; CFU-M
+-->
 <variables>
   <var><name> MCSF </name></var>
 </variables>
@@ -13,13 +16,7 @@
      <errorlim> 1000 </errorlim>
  </diffeq>
 
-<diffeq>
-  <name> PBMNC </name>  peripheral blood mononuclear cells
-     <integralname> PBMNC </integralname>
-     <initialval> 10000000 </initialval>
-     <dervname> Change </dervname>
-     <errorlim> 1000 </errorlim>
- </diffeq>
+
 
 
 

@@ -19,7 +19,7 @@
  <diffeq>
   <name> PreOB </name>  
      <integralname> PreOB </integralname>
-     <initialval> 500 </initialval>   <!--<2x number blasts per BMU-->
+     <initialval> 500 </initialval>   <!--<2x number blasts per BMU ???????????ref?????????-->
      <dervname> Change </dervname>
      <errorlim> 5 </errorlim>
  </diffeq>

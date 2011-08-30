@@ -1,4 +1,8 @@
 <structure><name> PreOC2 </name>
+<!--
+Defn:  previously circulating monocyte that has taken up residence in bone marrow or osteonal compartment awaiting uptake to 'clast
+-->
+
 <variables>
   <var><name> MCSF </name></var>
   <var><name> RANKL </name></var>

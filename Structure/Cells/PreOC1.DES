@@ -1,5 +1,7 @@
 <structure><name> PreOC1 </name>
-
+<!--
+Defn: circulating nonproliferating monocyte awaiting signal to join BMU; peripheral blood mononuclear cells (PBMNC)
+-->
 <variables>
   <var><name> MCSF </name></var>
   <var><name> RANKL </name></var>
@@ -45,7 +47,7 @@
 
 <!--
  1.  upreg of RANK expression in pure pops of oc precursors by tgfbeta1 (ref 172, 174 in tgfbeta1 to the bone) 
-      NB: no blast precursors means no OPG, so this effectmight even out in vivo
+      NB: no blast precursors means no OPG, so this effect might even out in vivo
 
 
 -->

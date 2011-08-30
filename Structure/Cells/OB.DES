@@ -36,6 +36,9 @@
 <definitions>
 <block><name> Dervs </name>
 
+
+<def><name> NewBlastRate </name><val> N * h * eps * ( 2 ^ mu ) * Prob </val></def>
+
 <def><name> MatrixPerBlast </name><val> .000000006944 </val></def>
 <def><name> production </name> <val> OB * MatrixPerBlast * BMU.BMU</val></def>
 <def><name> Change </name><val>  1 * ( PreOB.Loss - ( kd * OB ) ) </val></def>
@@ -70,6 +73,6 @@ high expression of OCN (TGFbeta chap in Principles of bone biology)
 <!--
 
   1.  assume an osteoblast life span of 300 hours:(1/300*60)=.0000556  Jilka et al, "Osteoblast programmed cell death (apoptosis): modulation by growth factors and cytokines" J Bone Miner Res 1998, 13.  793-802
-   2.  
+   2.  NEED WET WT OF BONE PER UNIT VOLUME; CONVERT OB MANUFACTURING IN MM^3 TO MG.  SEE REF MAN
 
 -->
