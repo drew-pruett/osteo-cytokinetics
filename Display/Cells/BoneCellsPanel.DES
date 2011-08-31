@@ -163,14 +163,14 @@ Solver : Digital Human (V1.0)
 
 <showvalue>
   <row> 21 </row><col> 1 </col>
-  <name> OC.resorption </name>
-  <label> resorption </label>
+  <name> OC.DailyResorption </name>
+  <label> daily res </label>
 </showvalue>
 
 <showvalue>
   <row> 22 </row><col> 1 </col>
-  <name> OC.DailyResorption </name>
-  <label> daily res </label>
+  <name> BMU.Length </name>
+  <label> Del L </label>
 </showvalue>
 
 </groupbox>

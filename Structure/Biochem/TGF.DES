@@ -17,7 +17,7 @@
 <diffeq>
   <name> BoneContent </name>  
      <integralname> BoneContent </integralname>
-     <initialval> 200 </initialval>
+     <initialval> 200 </initialval>  <!-- 200 ug/kg bone=.2 ng/mg bone -->
      <dervname> Change </dervname>
      <errorlim> 1 </errorlim>
  </diffeq>

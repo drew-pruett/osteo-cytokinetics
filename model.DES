@@ -20,3 +20,25 @@
   <?include Display\Display.des ?>
 
 </model>
+
+<!--
+STILL NEEDED
+1.  activation for BMUs
+2.  lifetime for BMU
+3.  OPG/RANK/RANKL triad
+4.  reparam OB for 2000 ob/bmu
+5.  Ocytes embedding probability
+6.  oblast apoptosis
+7.  oclast apoptosis
+8.  tgf secretion
+9.  tcells
+10. vitamin D
+11. estrogen
+12. mcsf
+13 RANKLsol
+
+
+
+
+
+-->

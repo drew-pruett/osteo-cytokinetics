@@ -6,6 +6,10 @@
    <var><name> Gain </name></var>
   <var><name> Loss </name></var>
   <var><name> OsteonVolume </name></var>
+  <var><name> CSA </name></var>
+  <parm><name> Radius </name><val> 100 </val></parm><!-- um -->
+  <parm><name> Factor </name><val> .0000000022 </val></parm><!-- mg / um^3 in bone -->
+ 
 </variables>
 
 <equations>
@@ -17,15 +21,31 @@
      <errorlim> 100 </errorlim>
  </diffeq>
 
+ <diffeq>
+  <name> Length </name>  
+     <integralname> Length </integralname>
+     <initialval> 1200 </initialval>
+     <dervname> DeltaL </dervname>
+     <errorlim> 1 </errorlim>
+ </diffeq>
+
 </equations>
 
 <definitions>
  <block><name> Dervs </name>
+   <def><name> CSA </name><val>  3.14 * ( Radius ^ 2 ) </val></def>
    <def><name> Gain </name><val> 0 </val></def>
    <def><name> Loss </name><val> 0 </val></def>
+  <def><name> DeltaL </name><val> ( OB.production - OC.resorption ) / ( BMU * Factor * CSA )  </val></def>
    <def><name>Change </name><val> Gain - Loss </val></def>
-  <def><name> OsteonVolume </name><val> 25 </val></def>
+  <def><name> OsteonVolume </name><val> CSA * Length / 1000000 </val></def>
  </block>
 </definitions>
 
 </structure>
+
+<!--
+  1.  osteonal diameter is 150-220 um (human femur) 
+        ref Moyle and Bowden, "Fracture of human femoral bone" J Biomech 17 (1984) 203-13
+
+-->
