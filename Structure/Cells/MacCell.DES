@@ -11,9 +11,12 @@ Def',:  committed macrophage forming progenitor; proliferating assymmetrically; 
   <var><name> Diff </name></var>
   <var><name> Apop </name></var>
   <var><name>  Gain </name></var>
+<<<<<<< HEAD
   <var><name> Effect </name></var>
   <var><name> ERK </name></var>
   <var><name> MAPK </name></var>
+=======
+>>>>>>> 29088ef836a574d5ae67bab5de353130bb897571
 </variables>
 
 <equations>
@@ -32,6 +35,7 @@ Def',:  committed macrophage forming progenitor; proliferating assymmetrically; 
 <definitions>
 <block><name> Dervs </name>
 
+<<<<<<< HEAD
 <!--  <def><name> ERK </name><val> 3 * TGF.[TGFmarrow] / ( .05 +  </val></def>
   <def><name> MAPK </name><var>  </var></def>-->
   <def><name> Effect </name> <val> 1</val></def>
@@ -40,6 +44,13 @@ Def',:  committed macrophage forming progenitor; proliferating assymmetrically; 
   <def><name> Gain </name><val> .0005 </val></def>
   
  <def><name> Change </name><val> Gain - Apop - Diff </val></def>
+=======
+  <def><name> Diff </name><val> MacCell * .0000005 </val></def>
+  <def><name> Apop </name><val> 0 </val></def>
+  <def><name> Gain </name><val> .0005 </val></def>
+  
+ <def><name> Change </name><val> Gain - Apop - Diff </val></def>-->
+>>>>>>> 29088ef836a574d5ae67bab5de353130bb897571
 </block>
 </definitions>
 

@@ -20,6 +20,7 @@
   <?include Display\Display.des ?>
 
 </model>
+<<<<<<< HEAD
 
 <!--
 STILL NEEDED
@@ -42,3 +43,5 @@ STILL NEEDED
 
 
 -->
+=======
+>>>>>>> 29088ef836a574d5ae67bab5de353130bb897571

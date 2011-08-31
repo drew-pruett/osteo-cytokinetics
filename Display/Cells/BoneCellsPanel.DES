@@ -163,8 +163,8 @@ Solver : Digital Human (V1.0)
 
 <showvalue>
   <row> 21 </row><col> 1 </col>
-  <name> OC.DailyResorption </name>
-  <label> daily res </label>
+  <name> OC.resorption </name>
+  <label> resorption </label>
 </showvalue>
 
 <showvalue>

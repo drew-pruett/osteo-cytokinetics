@@ -38,7 +38,6 @@
 
 
 
-
 <def><name> MatrixPerBlast </name><val> .000000006944 </val></def>
 <def><name> production </name> <val> OB * MatrixPerBlast * BMU.BMU</val></def>
 <def><name> Change </name><val>  1 * ( PreOB.Loss - ( kd * OB ) ) </val></def>

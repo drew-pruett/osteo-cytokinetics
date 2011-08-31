@@ -3,7 +3,7 @@
 <structure><name> OC </name>
 
 <variables>
-   <var><name> resorption </name><val> 0 </val></var>
+   <var><name> resorption </name></var>
   <var><name> DailyResorption </name></var>
    <var><name> ResorptiveCapacity </name></var>
    <var><name> Gain </name></var>
@@ -16,8 +16,6 @@
 <equations>
   <diffeq>
    <name> OC </name>  per BMU
-      <integralname> OC </integralname>
-      <initialval> 9.2 </initialval>
       <dervname> Change </dervname>
       <errorlim> .01 </errorlim>
   </diffeq>
