@@ -13,18 +13,6 @@
 </variables>
 
 <equations>
-
-<diffeq>
-  <name> BoneContent </name>  
-     <integralname> BoneContent </integralname>
-     <initialval> 200 </initialval>  <!-- 200 ug/kg bone=.2 ng/mg bone -->
-<var><name> LatentCirculatingShort </name><val> 20 </val></var>
-<var><name> LatentCirculatingLong </name><val> 50 </val></var>
-<var><name> BoneConcentration </name><val> 200 </val></var> ng/g=pg/mg
-<var><name> secretion </name></var>
-</variables>
-
-<equations>
 <diffeq>
   <name> BoneContent </name>  
      <integralname> BoneContent </integralname>
@@ -64,14 +52,7 @@ THIS WILL GIVE THE "CAPTURE FACTOR"
   <def><name> BoneConcentration </name><val> BoneContent / ( CalcBone.Mass + UncalcBone.Mass ) </val></def>
   <def><name> Change </name><val> 0 * ( OB.production * ( ( .025 * 5 * LatentCirculatingShort ) + ( OB.OB * OB.TGFsecretion ) ) - ( OC.resorption * BoneConcentration ) )</val></def>
   <def><name> OsteonalChange </name><val> ( OC.resorption * BoneContent / 1000 ) - CircActiveTGFExchange </val></def>
-</equations>
 
-
-<definitions>
-<block><name> Dervs </name>
-  <def><name> BoneConcentration </name><val> BoneContent / ( CalcBone.Mass + UncalcBone.Mass ) </val></def>
-  <def><name> Change </name><val> 0 * ( OB.production * ( ( .025 * 5 * LatentCirculatingShort ) + ( OB.OB * OB.TGFsecretion ) ) - ( OC.resorption * BoneConcentration ) )</val></def>
->>>>>>> 29088ef836a574d5ae67bab5de353130bb897571
 </block>
 </definitions>
 

@@ -1,7 +1,7 @@
 <structure><name> OB </name>
 <variables>
   <var><name> RANKLmb </name><val> 100 </val></var>
-  <parm><name> kd </name><val> .0000556 </val></parm>
+  <parm><name> kd </name><val> .0000156 </val></parm>
   <var><name> MCSF </name></var>
   <var><name> TGFbeta </name></var>
   <var><name> 1_25OH2D3 </name></var>
@@ -16,9 +16,9 @@
  <diffeq>
   <name> OB </name>  
      <integralname> OB </integralname>
-     <initialval> 300 </initialval>
+     <initialval> 2000 </initialval>
      <dervname> Change </dervname>
-     <errorlim> 3 </errorlim>
+     <errorlim> 10 </errorlim>
  </diffeq>
 
 <diffeq>
@@ -38,7 +38,7 @@
 
 
 
-<def><name> MatrixPerBlast </name><val> .000000006944 </val></def>
+<def><name> MatrixPerBlast </name><val> .00000000104 </val></def>
 <def><name> production </name> <val> OB * MatrixPerBlast * BMU.BMU</val></def>
 <def><name> Change </name><val>  1 * ( PreOB.Loss - ( kd * OB ) ) </val></def>
   <def><name> RLmbChange </name><val> 0 * ( RANKLmbExpression - 1 ) </val></def>

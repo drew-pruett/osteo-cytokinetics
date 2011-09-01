@@ -20,11 +20,11 @@
   <?include Display\Display.des ?>
 
 </model>
-<<<<<<< HEAD
+
 
 <!--
 STILL NEEDED
-1.  activation for BMUs
+1.  activation for BMUs:  quintic based on available surface area?
 2.  lifetime for BMU
 3.  OPG/RANK/RANKL triad
 4.  reparam OB for 2000 ob/bmu
@@ -39,9 +39,4 @@ STILL NEEDED
 13 RANKLsol
 
 
-
-
-
 -->
-=======
->>>>>>> 29088ef836a574d5ae67bab5de353130bb897571

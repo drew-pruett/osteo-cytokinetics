@@ -8,6 +8,7 @@
   <var><name> CSA </name></var>
   <parm><name> Radius </name><val> 100 </val></parm><!-- um -->
   <parm><name> Factor </name><val> .0000000022 </val></parm><!-- mg / um^3 in bone -->
+  <var><name> OsteonVolume </name></var>
  
 </variables>
 
@@ -46,3 +47,4 @@
 <!--
   1.  osteonal diameter is 150-220 um (human femur) 
         ref Moyle and Bowden, "Fracture of human femoral bone" J Biomech 17 (1984) 203-13
+-->

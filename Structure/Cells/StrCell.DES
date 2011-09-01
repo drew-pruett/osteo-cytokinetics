@@ -23,6 +23,9 @@
 
 <definitions>
 <block><name> Dervs </name>
+
+  <def><name> RANKL </name><val> .02 / ( .02 + TGF.[TGFost] ) </val></def>
+  <def><name> OPG </name><val> 8 * ( TGF.[TGFost] ^ 2.5 ) / ( ( TGF.[TGFost] ^ 2.5 ) + ( .25 ^ 2.5 ) ) </val></def>
 <!--
 <def><name> 1_25OH2D3 </name><val>1_25OH2D3.1_25_OH2D3</val></def>
 

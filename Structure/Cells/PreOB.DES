@@ -19,7 +19,7 @@
  <diffeq>
   <name> PreOB </name>  
      <integralname> PreOB </integralname>
-     <initialval> 500 </initialval>   <!--<2x number blasts per BMU ???????????ref?????????-->
+     <initialval> 3000 </initialval>   <!--<2x number blasts per BMU ???????????ref?????????-->
      <dervname> Change </dervname>
      <errorlim> 5 </errorlim>
  </diffeq>
@@ -37,7 +37,7 @@
 <definitions>
 <block><name> Dervs </name>
 
-<def><name> kd </name><val> .0000334 </val></def>
+<def><name> kd </name><val> .00000534 </val></def>
 <def><name> Gain </name><val> 0 </val></def>
 <def><name> Loss </name><val> kd * PreOB </val></def>
 
