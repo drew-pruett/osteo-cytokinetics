@@ -9,16 +9,16 @@
   <parm><name> CircActiveDecay </name><val> .277 </val></parm>
   <var><name> [TGFs] </name></var>
   <var><name> [TGFost]</name></var>
-
+  <var><name> BoneBloodFlow </name></var>
 </variables>
 
 <equations>
 <diffeq>
   <name> BoneContent </name>  
      <integralname> BoneContent </integralname>
-     <initialval> 200 </initialval>
+     <initialval> 1000000 </initialval> <!-- ng in whole skeleton; 200 ug/kg@5kd=1mg=1,000,000 ng -->
      <dervname> Change </dervname>
-     <errorlim> 1 </errorlim>
+     <errorlim> 100 </errorlim>
  </diffeq>
 
 <diffeq>
@@ -47,11 +47,15 @@ THIS WILL GIVE THE "CAPTURE FACTOR"
   
   <def><name> [TGFs] </name><val> CirculatingActiveTGF / 3000 MAX 0 </val></def>
   <def><name> [TGFost] </name><val> OsteonalTGF / BMU.OsteonVolume MAX 0 </val></def>
-  <def><name> CircActiveTGFExchange </name><val> .5 * ( OsteonalTGF - ( 50 * [TGFs] ) ) / ( 50 + BMU.OsteonVolume )</val></def> <!-- here we assume that TGF can freely exchange with the serum compartment-->
+  <def><name> BoneBloodFlow </name><val> 250 </val></def>
+          <!-- CO=5000 ml/min; 5% CO to bone ,so 250 ml/min to bone -->
+  <def><name> CircActiveTGFExchange </name><val> .5 * ( OsteonalTGF - ( BoneBloodFlow * [TGFs] ) ) / ( BoneBloodFlow + BMU.OsteonVolume )</val></def> 
+          <!-- here we assume that TGF can freely exchange with the serum compartment-->
   <def><name> CircActiveTGFChange </name><val> CircActiveTGFExchange - ( CircActiveDecay * CirculatingActiveTGF ) </val></def>
   <def><name> BoneConcentration </name><val> BoneContent / ( CalcBone.Mass + UncalcBone.Mass ) </val></def>
   <def><name> Change </name><val> 0 * ( OB.production * ( ( .025 * 5 * LatentCirculatingShort ) + ( OB.OB * OB.TGFsecretion ) ) - ( OC.resorption * BoneConcentration ) )</val></def>
-  <def><name> OsteonalChange </name><val> ( OC.resorption * BoneContent / 1000 ) - CircActiveTGFExchange </val></def>
+  <def><name> OsteonalChange </name><val>  OC.resorption * BoneConcentration - CircActiveTGFExchange </val></def>
+   <!-- clast resorption is is mg-->
 
 </block>
 </definitions>

@@ -1,6 +1,13 @@
 <structure><name> MCSF </name>
+
 <variables>
-<var><name>[MCSF] </name></var>
+  <var><name>[MCSF] </name></var>
+  <parm><name> K12 </name><val> .00267 </val></parm>
+  <parm><name> K21 </name><val> .00363 </val></parm>
+  <parm><name> K10 </name><val> .00865 </val></parm>
+  <parm><name> Vmax </name><val> 4.92 </val></parm>
+  <parm><name> Km </name><val> 134 </val></parm>
+  <var><name> baseline </name><val> 125 </val></var>
 </variables>
 
 <equations>
@@ -8,17 +15,26 @@
 <diffeq>
   <name> MCSF </name>  
      <integralname> MCSF </integralname>
-     <initialval> 300 </initialval>
+     <initialval> 13920 </initialval>  <!--ng/whole body-->
      <dervname> Change </dervname>
-     <errorlim> 1 </errorlim>
+     <errorlim> 15 </errorlim>
+ </diffeq>
+
+<diffeq>
+  <name> MCSF2 </name>  
+     <integralname> MCSF2 </integralname>
+     <initialval> 1320 </initialval>
+     <dervname> Change2 </dervname>
+     <errorlim> 10 </errorlim>
  </diffeq>
 
 </equations>
 
 <definitions>
 <block><name> Dervs </name>
-<def><name> Change </name><val> 0 </val></def>
- <def><name> [MCSF] </name><val> MCSF / 3 </val></def>
+<def><name> Change </name><val> baseline + ( K21 * MCSF2 ) - ( K12 * MCSF ) - ( K10 * MCSF ) - ( Vmax * MCSF / ( Km + MCSF ) )  </val></def>
+<def><name> Change2 </name><val> ( K12 * MCSF ) - ( K21 * MCSF2 ) </val></def>
+ <def><name> [MCSF] </name><val> MCSF / 3000 </val></def>
 </block>
 </definitions>
 
@@ -27,5 +43,7 @@
 <!--
    1.  Dose dependent inhibition by TGFbeta1:  ref 166 in "TGFbeta1 to the bone"
 
+  2.  1.728-8.4 ng/ml (4.464); 1U=.44 fmol=12pg
+  3.  2 pool model is necessary for kinetic study
 
 -->

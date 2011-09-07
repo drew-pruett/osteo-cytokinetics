@@ -49,7 +49,7 @@
    <def><name>Change </name><val> Gain - Loss </val></def>
    <def><name> NucleiChange </name><val> NGain - NLoss </val></def>
 
-   <def><name> ResorptiveCapacity </name><val> .00000002516 </val></def>
+   <def><name> ResorptiveCapacity </name><val> .00000000429 </val></def>
    <def><name> resorption </name><val> BMU.BMU * Nuclei * OC * ResorptiveCapacity </val></def>
   <def><name> DailyResorption </name><val> 1440 * resorption </val></def>
    <def><name> RankChange </name><val> 0 </val></def>

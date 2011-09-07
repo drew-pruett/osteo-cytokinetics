@@ -1,7 +1,7 @@
 
 
 <?path Structure?>
-
+<?include Cells/StrCell.DES ?>
 <?include Cells/PreOB.DES ?>
 <?include Cells/OB.DES ?>
 <?include Cells/MacCell.DES ?>
@@ -28,6 +28,7 @@
 
   <block><name> Dervs </name>
   <call> MCSF.Dervs </call>
+  <call> StrCell.Dervs </call>
   <call> PreOB.Dervs </call>
   <call> OB.Dervs </call>
   <call> RANKLsol.Dervs </call>

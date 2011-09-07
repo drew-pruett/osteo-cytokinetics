@@ -7,7 +7,7 @@
   <var><name> Loss </name></var>
   <var><name> CSA </name></var>
   <parm><name> Radius </name><val> 100 </val></parm><!-- um -->
-  <parm><name> Factor </name><val> .0000000022 </val></parm><!-- mg / um^3 in bone -->
+  <parm><name> Factor </name><val> .00000037 </val></parm><!-- mg / um^3 in bone -->
   <var><name> OsteonVolume </name></var>
  
 </variables>
@@ -34,9 +34,9 @@
 <definitions>
  <block><name> Dervs </name>
    <def><name> CSA </name><val>  3.14 * ( Radius ^ 2 ) </val></def>
-   <def><name> Gain </name><val> 0 </val></def>
-   <def><name> Loss </name><val> 0 </val></def>
-  <def><name> DeltaL </name><val> ( OB.production - OC.resorption ) / ( BMU * Factor * CSA )  </val></def>
+   <def><name> Gain </name><val> 50 </val></def>
+   <def><name> Loss </name><val> .00005 * BMU </val></def>
+  <def><name> DeltaL </name><val> ( 1.4 * OB.production - OC.resorption ) / ( BMU * Factor * CSA )  </val></def>
    <def><name>Change </name><val> Gain - Loss </val></def>
   <def><name> OsteonVolume </name><val> CSA * Length / 1000000 </val></def>
  </block>

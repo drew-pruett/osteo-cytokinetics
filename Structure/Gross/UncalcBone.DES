@@ -1,6 +1,6 @@
 <structure><name> UncalcBone </name>
 <variables>
-
+  <var><name> Calcifying </name></var>
 </variables>
 
 <equations>
@@ -16,21 +16,21 @@
 
 <definitions>
 <block><name> Dervs </name>
-
-<def><name> Change </name><val> 1 * (  OB.production - ( .0006944 * Mass ) ) </val></def>
+  <def><name> Calcifying </name><val> .00006921 * Mass </val></def>
+  <def><name> Change </name><val> OB.production - Calcifying </val></def>
 </block>
 </definitions>
 
 </structure>
 
 <!--
-  14% of body weight is skeleton.
-   in a 70 kg man, this is ~10 kg.
+  14% of body weight is skeleton. half of that is bone 
+   in a 70 kg man, this is ~5 kg.
    then Ca is 10% of skeleton weight.
-   Assuming all mineralized tissue is hydroxyapatite, then 9% of skeleton weight is phosphate.
-   without that assumption, it is safe to assume that 10% of skeleton weight is PO4
-   if 'clasts resorb 300 mg of calcium per day, they resorb 3 g of bone per day.
-   in one year, this is ~1.09 kg, corresponding to ~10 kg ion 10 years, i.e. total remodeling in 10 years.
+   Assuming all mineralized tissue is hydroxyapatite, then 9% of skeleton bone weight is phosphate.
+   without that assumption, it is safe to assume that 10% of skeleton bone weight is PO4
+   if 'clasts resorb 500 mg of calcium per day, they resorb 2.5 g of bone per day.
+   in one year, this is ~912.5 g, corresponding to ~10 kg ion 10 years, i.e. total remodeling in 10 years.
 
    so 200 ng of activatable(?) TGFbeta are released each day from bone, i.e. .1389 ng/min.
    This is released in the resorption space.

@@ -9,6 +9,7 @@
   <var><name> kd </name></var>
   <var><name> Gain </name></var>
   <var><name> Loss </name></var>
+  <var><name> base </name></var>
 
   <var><name> 1_25OH2D3 </name></var>
 
@@ -37,11 +38,12 @@
 <definitions>
 <block><name> Dervs </name>
 
-<def><name> kd </name><val> .00000534 </val></def>
-<def><name> Gain </name><val> 0 </val></def>
+<def><name> base </name><val> 1.38 </val></def>
+<def><name> kd </name><val> .00000634 </val></def>
+<def><name> Gain </name><val> ( ( base ^ .00011575 - 1 ) * PreOB ) + ( StrCell.Diff / BMU.BMU ) </val></def>
 <def><name> Loss </name><val> kd * PreOB </val></def>
 
-<def><name> Change </name><val> 0 * ( Gain - Loss ) </val></def>
+<def><name> Change </name><val>  Gain - Loss  </val></def>
 <def><name> RLmbChange </name> <val> 0 </val></def>
 <def><name> RANKLmb </name><val> RANKLmbExpression  * PreOB </val></def>
 

@@ -6,26 +6,35 @@
   <var><name> TGFbeta </name></var>
   <var><name> 1_25OH2D3 </name></var>
   <var><name> OPG </name></var>
+  <var><name> base </name></var>
+  <var><name> Gain </name></var>
+  <var><name> Diff </name></var>
+  <var><name> Loss </name></var>
 
 </variables>
 
 <equations>
-<!-- <diffeq>
+ <diffeq>
   <name> StrCell </name>  
      <integralname> StrCell </integralname>
-     <initialval> 1000000 </initialval>
+     <initialval> 10000 </initialval>
      <dervname> Change </dervname>
-     <errorlim> 100 </errorlim>
+     <errorlim> 10 </errorlim>
  </diffeq>
--->
+
 </equations>
 
 
 <definitions>
 <block><name> Dervs </name>
 
-  <def><name> RANKL </name><val> .02 / ( .02 + TGF.[TGFost] ) </val></def>
-  <def><name> OPG </name><val> 8 * ( TGF.[TGFost] ^ 2.5 ) / ( ( TGF.[TGFost] ^ 2.5 ) + ( .25 ^ 2.5 ) ) </val></def>
+  <def><name> base </name><val>1.47 </val></def>
+  <def><name> Gain </name><val> ( base ^ .00011575 - 1 ) * StrCell </val></def>
+  <def><name> Diff </name><val> .1667 * Gain </val></def>
+  <def><name> Loss </name><val> Diff + ( .000035 * StrCell ) </val></def>
+  <def><name> Change </name><val> Gain - Loss </val></def>
+<!--  <def><name> RANKL </name><val> .02 / ( .02 + TGF.[TGFost] ) </val></def>-->
+<!--  <def><name> OPG </name><val> 8 * ( TGF.[TGFost] ^ 2.5 ) / ( ( TGF.[TGFost] ^ 2.5 ) + ( .25 ^ 2.5 ) ) </val></def>-->
 <!--
 <def><name> 1_25OH2D3 </name><val>1_25OH2D3.1_25_OH2D3</val></def>
 
@@ -37,6 +46,7 @@ TGFbeta upregs OPG time and dose dependently:  .2ng/L; max response at 2 ng/L
 
 </structure>
 
+<!--
 stromal cells advance by:
 1. regulated self renewal 
 2. fate choice/commitment
@@ -46,3 +56,6 @@ stromal cells advance by:
                          4. PGE2
                          5. Leptin
                          6. BMPs
+
+NEED:  PATHWAYS FOR TGFBETA AND TNFALPHA UP-REG OF RANKL
+-->

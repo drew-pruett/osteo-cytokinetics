@@ -1,5 +1,6 @@
-<structure><name> PTH </name>
+<structure><name> OCN </name>
 <variables>
+  
 
 </variables>
 
@@ -8,10 +9,15 @@
 </equations>
 
 <definitions>
+<block><name> Dervs </name>
 
 </definitions>
 
 </structure>
 
 <!--
-PTHrP normal conc is 26-50 pmol/L -->
+  1.  NV 8-50 ng/ml
+  2.  
+  3.   
+
+-->

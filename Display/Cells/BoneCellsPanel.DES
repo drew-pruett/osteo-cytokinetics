@@ -18,9 +18,9 @@ Solver : Digital Human (V1.0)
 <groupbox>
    <row> 2.0 </row>
    <col> 2.0 </col>
-   <high> 39.0 </high>
-   <wide> 100.0 </wide>
-   <title> Bone Cells</title>
+   <high> 25.0 </high>
+   <wide> 46.0 </wide>
+   <title> Clast line</title>
 
 
     <showgraph>
@@ -51,8 +51,8 @@ Solver : Digital Human (V1.0)
     </showgraph>
 
    <showgraph>
-      <row>1</row>
-      <col>101</col>
+      <row>11 </row>
+      <col>1</col>
       <high>9</high>
       <wide>40</wide>
       <leftmargin>10</leftmargin>      
@@ -64,29 +64,38 @@ Solver : Digital Human (V1.0)
       <yaxis>
         <yvar>
           <name> PreOC1.PreOC1</name>
-          <label>cPreOC1</label>
+          <label> PreOC1 </label>
           <linecolor>RED</linecolor>
         </yvar>
         <yvar>
           <name> PreOC2.PreOC2</name>
-          <label>PreOC2</label>
+          <label> PreOC2 </label>
           <linecolor> BLUE </linecolor>
         </yvar>
-       <yvar>
-          <name> MacCell.MacCell</name>
-          <label>MacCell</label>
-          <linecolor> BLACK </linecolor>
-        </yvar>
 
-
-      <scale><min> 5 </min><max> 15 </max></scale>
+      <scale><min> 0 </min><max> 1000 </max></scale>
       </yaxis>
     </showgraph>
 
+<showvalue>
+  <row> 22 </row><col> 1 </col>
+  <name> OC.DailyResorption </name>
+  <label> daily res </label>
+</showvalue>
+
+</groupbox>
+
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 52.0 </col>
+   <high> 25.0 </high>
+   <wide> 46.0 </wide>
+   <title> Blast line</title>
 
     <showgraph>
-      <row>1</row>
-      <col>51</col>
+      <row> 1 </row>
+      <col> 1 </col>
       <high>9</high>
       <wide>40</wide>
       <leftmargin>10</leftmargin>      
@@ -106,13 +115,56 @@ Solver : Digital Human (V1.0)
           <label>blasts </label>
           <linecolor>BLUE</linecolor>
         </yvar>
+       <yvar>
+          <name> StrCell.StrCell</name>
+          <label> Stromal Cells </label>
+          <linecolor>BLACK </linecolor>
+        </yvar>
+
       <scale><min> 0 </min><max> 200 </max></scale>
       </yaxis>
     </showgraph>
 
+   <showgraph>
+      <row> 11 </row>
+      <col> 1 </col>
+      <high>9</high>
+      <wide>40</wide>
+      <leftmargin>10</leftmargin>      
+      <xaxis>
+        <name>System.X</name>
+        <label>Minutes</label>
+        <scale><min> 0 </min><max> 60 </max></scale>
+      </xaxis>
+      <yaxis>
+        <yvar>
+          <name> UncalcBone.Mass</name>
+          <label> uncalcified mass</label>
+          <linecolor>RED</linecolor>
+        </yvar>
+      <scale><min> 2500 </min><max> 3500 </max></scale>
+      </yaxis>
+    </showgraph>
+
+<showvalue>
+  <row> 22 </row><col> 1 </col>
+  <name> OB.DailyConstruction </name>
+  <label> daily new matrix </label>
+</showvalue>
+
+
+</groupbox>
+
     
+<groupbox>
+   <row> 27.0 </row>
+   <col> 2.0 </col>
+   <high> 25.0 </high>
+   <wide> 46.0 </wide>
+   <title> Bone </title>
+
     <showgraph>
-      <row>10</row>
+      <row>1 </row>
       <col>1</col>
       <high>9</high>
       <wide>40</wide>
@@ -134,48 +186,39 @@ Solver : Digital Human (V1.0)
     </showgraph>
 
     <showgraph>
-      <row>10</row>
-      <col>51</col>
+      <row> 37 </row>
+      <col> 1 </col>
       <high>9</high>
       <wide> 45</wide>
       <leftmargin>15 </leftmargin>
-      
       <xaxis>
         <name>System.X</name>
         <label>Minutes</label>
-      </xaxis>
-      
+      </xaxis>     
       <yaxis>
         <yvar>
           <name> UncalcBone.Mass</name>
           <label>Uncalcified mass </label>
           <linecolor>RED</linecolor>
         </yvar>
- 
       </yaxis>
     </showgraph>
 
+</groupbox>
+
 <showvalue>
-  <row> 20 </row><col> 1 </col>
+  <row> 50 </row><col> 1 </col>
   <name> BMU.BMU </name>
   <label> #BMU </label>
 </showvalue>
 
 <showvalue>
-  <row> 21 </row><col> 1 </col>
-  <name> OC.resorption </name>
-  <label> resorption </label>
-</showvalue>
-
-<showvalue>
-  <row> 22 </row><col> 1 </col>
+  <row> 52 </row><col> 1 </col>
   <name> BMU.Length </name>
   <label> Del L </label>
 </showvalue>
 
-</groupbox>
 </panel>
-
 End
                                                                                                                                                                                                                        
    

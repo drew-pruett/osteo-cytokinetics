@@ -49,6 +49,28 @@ Solver : Digital Human (V1.0)
       </yaxis>
     </showgraph>
 
+   <showgraph>
+      <row>21</row>
+      <col>1</col>
+      <high>9</high>
+      <wide>40</wide>
+      <leftmargin>10</leftmargin>      
+      <xaxis>
+        <name>System.X</name>
+        <label>Minutes</label>
+        <scale><min> 0 </min><max> 60 </max></scale>
+      </xaxis>
+      <yaxis>
+        <yvar>
+          <name> MCSF.[MCSF] </name>
+          <label> [MCSF] </label>
+          <linecolor>RED</linecolor>
+        </yvar>
+
+      <scale><min> 0 </min><max> 5 </max></scale>
+      </yaxis>
+    </showgraph>
+
 
 </groupbox>
 </panel>

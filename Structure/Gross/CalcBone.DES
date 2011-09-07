@@ -17,7 +17,7 @@
 <definitions>
 <block><name> Dervs </name>
 
-<def><name> Change </name><val>  .0006944 * UncalcBone.Mass - OC.resorption </val></def>
+<def><name> Change </name><val>  1.429 * UncalcBone.Calcifying - OC.resorption </val></def>
 </block>
 </definitions>
 
