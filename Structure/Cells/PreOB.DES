@@ -39,7 +39,7 @@
 <block><name> Dervs </name>
 
 <def><name> base </name><val> 1.38 </val></def>
-<def><name> kd </name><val> .00000634 </val></def>
+<def><name> kd </name><val> .00003733 </val></def>.00000654
 <def><name> Gain </name><val> ( ( base ^ .00011575 - 1 ) * PreOB ) + ( StrCell.Diff / BMU.BMU ) </val></def>
 <def><name> Loss </name><val> kd * PreOB </val></def>
 

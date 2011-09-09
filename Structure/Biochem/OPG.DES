@@ -1,16 +1,38 @@
 <structure><name> OPG </name>
 <variables>
-  <var><name> 1_25OH2D3 </name><var>
+  <var><name> 1_25OH2D3 </name></var>
+  <parm><name> OPGss </name><val> 400 </val></parm> <!-- 134 pg/L -->
+  <var><name> SignalTarget </name></var>
+  <var><name> OPG </name></var>
+  <var><name> [OPG]s </name></var>
 
 </variables>
 
 <equations>
+
+ <diffeq>
+  <name> Signal </name>  
+     <integralname> Signal </integralname>
+     <initialval> 9 </initialval>
+     <dervname> dSignal </dervname>
+     <errorlim> .01 </errorlim>
+ </diffeq>
 
 </equations>
 
 <definitions>
 <block><name> Dervs </name>
 
+  <def><name> SignalTarget </name><val> OB.OPGSecretion * StrCell.OPGSecretion </val></def>
+  <def><name> dSignal </name><val> .01 * ( SignalTarget - Signal ) </val></def>
+  <def><name> OPG </name><val> OPGss * Signal / 10  </val></def>
+  
+  <def>
+     <name> [OPG]s </name>
+     <val> OPG / 3 </val>
+  </def>
+
+</block>
 </definitions>
 
 </structure>
@@ -21,5 +43,7 @@
 
   2.  OPG half maximal effect on down-reg of clastogenesis is at 1-2 ng/m=.00833 nmol/ml@ 120 g/mol
   3.  together these imply a "working RANKL" concentration of 
-
+  4.  serum OPG is 1.8 pmol/L - 4.1pmol/L  (134 pg/ml (men<50), 188 (men >50), 171 (premen women), 195 (postmen women)).  assay detect monomer and dimeric forms.
+  5.  circulates as homodimer, monomer, and bound to RANKL.
+  6.  in osteoporotic patients (which basis of op?) homodimer is 3x normal subject concentration, total is 1.5x normal.furuya et al, "Immuno-PCR assay for homodimeric osteoprotegerin.  Clin Chem. 47 (2001) 1475-1477
 -->

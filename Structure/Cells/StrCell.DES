@@ -10,6 +10,7 @@
   <var><name> Gain </name></var>
   <var><name> Diff </name></var>
   <var><name> Loss </name></var>
+  <var><name> OPGSecretion </name></var>
 
 </variables>
 
@@ -31,10 +32,11 @@
   <def><name> base </name><val>1.47 </val></def>
   <def><name> Gain </name><val> ( base ^ .00011575 - 1 ) * StrCell </val></def>
   <def><name> Diff </name><val> .1667 * Gain </val></def>
-  <def><name> Loss </name><val> Diff + ( .000035 * StrCell ) </val></def>
+  <def><name> Loss </name><val> Diff + ( .0000375 * StrCell ) </val></def>
   <def><name> Change </name><val> Gain - Loss </val></def>
+  <def><name> OPGSecretion </name><val> 1 + ( 5 * ( TGF.[TGFost] ^ .7 ) / ( ( TGF.[TGFost] ^ .7 ) + ( 2 ^ .7 ) ) ) </val></def>
+
 <!--  <def><name> RANKL </name><val> .02 / ( .02 + TGF.[TGFost] ) </val></def>-->
-<!--  <def><name> OPG </name><val> 8 * ( TGF.[TGFost] ^ 2.5 ) / ( ( TGF.[TGFost] ^ 2.5 ) + ( .25 ^ 2.5 ) ) </val></def>-->
 <!--
 <def><name> 1_25OH2D3 </name><val>1_25OH2D3.1_25_OH2D3</val></def>
 

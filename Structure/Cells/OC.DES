@@ -15,7 +15,7 @@
 
 <equations>
   <diffeq>
-   <name> OC </name>  per BMU
+   <name> OC </name>  <!--per BMU-->
       <integralname> OC</integralname>
       <initialval> 9 </initialval>
       <dervname> Change </dervname>
@@ -23,7 +23,7 @@
   </diffeq>
 
   <diffeq>
-   <name> Nuclei </name> per clast
+   <name> Nuclei </name> <!--per clast-->
     <integralname> Nuclei </integralname>
     <initialval> 9 </initialval>
     <dervname> NucleiChange </dervname>
@@ -43,8 +43,8 @@
  <block><name> Dervs </name>
    <def><name> Gain </name><val> 0 </val></def>
    <def><name> Loss </name><val> 0 </val></def>
-   <def><name> NGain </name><val> PreOC2.Diff - ( .0000556 * Nuclei ) </val></def>
-   <def><name> NLoss </name><val> 0 </val></def>
+   <def><name> NGain </name><val> PreOC2.Diff </val></def>
+   <def><name> NLoss </name><val> 0.0000556 * Nuclei </val></def>
 
    <def><name>Change </name><val> Gain - Loss </val></def>
    <def><name> NucleiChange </name><val> NGain - NLoss </val></def>

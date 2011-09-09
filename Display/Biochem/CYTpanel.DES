@@ -44,13 +44,24 @@ Solver : Digital Human (V1.0)
           <label> [TGF_s]</label>
           <linecolor> BLUE </linecolor>
         </yvar>
-
       <scale><min> 0 </min><max> 2 </max></scale>
       </yaxis>
     </showgraph>
 
+<showvalue>
+  <row> 12 </row><col> 1 </col>
+  <name> TGF.CircActiveTGFExchange </name>
+  <label> TGF exchange </label>
+</showvalue>
+<showvalue>
+  <row> 13 </row><col> 1 </col>
+  <name> TGF.OsteonalGain </name>
+  <label> TGF gain from bone </label>
+</showvalue>
+
+
    <showgraph>
-      <row>21</row>
+      <row>15</row>
       <col>1</col>
       <high>9</high>
       <wide>40</wide>
@@ -71,6 +82,81 @@ Solver : Digital Human (V1.0)
       </yaxis>
     </showgraph>
 
+   <showgraph>
+      <row> 1</row>
+      <col> 50 </col>
+      <high>9</high>
+      <wide>40</wide>
+      <leftmargin>10</leftmargin>      
+      <xaxis>
+        <name>System.X</name>
+        <label>Minutes</label>
+        <scale><min> 0 </min><max> 60 </max></scale>
+      </xaxis>
+      <yaxis>
+        <yvar>
+          <name> OPG.[OPG]s </name>
+          <label> [OPG]s </label>
+          <linecolor>RED</linecolor>
+        </yvar>
+
+      <scale><min> 0 </min><max> 5 </max></scale>
+      </yaxis>
+    </showgraph>
+
+   <showgraph>
+      <row>15</row>
+      <col> 50 </col>
+      <high> 9 </high>
+      <wide> 40 </wide>
+      <leftmargin>10 </leftmargin>      
+      <xaxis>
+        <name>System.X</name>
+        <label>Minutes</label>
+        <scale><min> 0 </min><max> 60 </max></scale>
+      </xaxis>
+      <yaxis>
+        <yvar>
+          <name> OB.OPGSecretion  </name>
+          <label> OB </label>
+          <linecolor>RED</linecolor>
+        </yvar>
+        <yvar>
+          <name> StrCell.OPGSecretion  </name>
+          <label> StrCell </label>
+          <linecolor> BLUE </linecolor>
+        </yvar>
+        <yvar>
+          <name> OPG.Signal  </name>
+          <label> Signal </label>
+          <linecolor> BLACK </linecolor>
+        </yvar>
+
+      <scale><min> 0 </min><max> 5 </max></scale>
+      </yaxis>
+    </showgraph>
+
+   <showgraph>
+      <row> 31</row>
+      <col> 1 </col>
+      <high>9</high>
+      <wide>40</wide>
+      <leftmargin>10</leftmargin>      
+      <xaxis>
+        <name>System.X</name>
+        <label>Minutes</label>
+        <scale><min> 0 </min><max> 60 </max></scale>
+      </xaxis>
+      <yaxis>
+        <yvar>
+          <name> TGF.[Latent] </name>
+          <label> [Latent TGF] </label>
+          <linecolor>RED</linecolor>
+        </yvar>
+
+      <scale><min> 0 </min><max> 5 </max></scale>
+      </yaxis>
+    </showgraph>
 
 </groupbox>
 </panel>

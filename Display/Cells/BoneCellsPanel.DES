@@ -160,7 +160,7 @@ Solver : Digital Human (V1.0)
    <row> 27.0 </row>
    <col> 2.0 </col>
    <high> 25.0 </high>
-   <wide> 46.0 </wide>
+   <wide> 100.0 </wide>
    <title> Bone </title>
 
     <showgraph>
@@ -173,6 +173,7 @@ Solver : Digital Human (V1.0)
       <xaxis>
         <name>System.X</name>
         <label>Minutes</label>
+     <scale><min> 0 </min><max> 1440 </max></scale>
       </xaxis>
       
       <yaxis>
@@ -181,13 +182,13 @@ Solver : Digital Human (V1.0)
           <label>Bone mass </label>
           <linecolor>RED</linecolor>
         </yvar>
- 
+      <scale><min> 0 </min><max> 1000 </max></scale>
       </yaxis>
     </showgraph>
 
     <showgraph>
-      <row> 37 </row>
-      <col> 1 </col>
+      <row> 1 </row>
+      <col> 50 </col>
       <high>9</high>
       <wide> 45</wide>
       <leftmargin>15 </leftmargin>
@@ -203,6 +204,12 @@ Solver : Digital Human (V1.0)
         </yvar>
       </yaxis>
     </showgraph>
+
+<showvalue>
+  <row> 11 </row><col> 1 </col>
+  <name> BMU.OsteonVolume </name>
+  <label> OsteonVolume </label>
+</showvalue>
 
 </groupbox>
 

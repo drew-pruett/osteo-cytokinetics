@@ -1,15 +1,19 @@
 <structure><name> TGF </name>
 <variables>
-  <var><name> LatentCirculatingShort </name><val> 20 </val></var>
-  <var><name> LatentCirculatingLong </name><val> 50 </val></var>
-  <var><name> BoneConcentration </name><val> 200 </val></var> ng/g=pg/mg
-  <var><name> secretion </name></var>
+  <var><name> BoneConcentration </name></var> <!-- ng/g=pg/mg ; 200 ng/g -->
+  <var><name> secretion </name></var>  <!-- by 'blasts -->
   <var><name> CircActiveTGFGain </name></var>
   <var><name> CircActiveTGFExchange </name></var>
-  <parm><name> CircActiveDecay </name><val> .277 </val></parm>
+  <parm><name> CircActiveDecay </name><val> .277 </val></parm>  <!-- corresponding to 2-3 minute half life -->
   <var><name> [TGFs] </name></var>
-  <var><name> [TGFost]</name></var>
+  <var><name> [TGFost]</name><val> 1 </val></var>
   <var><name> BoneBloodFlow </name></var>
+  <var><name> OtherTGFbeta </name><val> 798 </val></var>  <!-- fits steady state conditions -->
+  <var><name> OsteonalGain </name></var>
+  <var><name> OsteonalLoss </name></var>
+  <var><name> [Latent] </name></var>
+  <parm><name> LatentProduction </name><val> 1110 </val></parm>  <!-- fits steady state conditions -->
+  <parm><name> LatentDecay </name><val> .0076 </val></parm>    <!-- fits 90 minute half life -->
 </variables>
 
 <equations>
@@ -27,15 +31,23 @@
      <initialval> 50 </initialval>
      <dervname> OsteonalChange </dervname>
      <errorlim> .1 </errorlim>
- </diffeq>
+ </diffeq>  <!-- ng/ml -->
 
 <diffeq>
   <name> CirculatingActiveTGF </name>  
      <integralname> CirculatingActiveTGF </integralname>
-     <initialval> 1500 </initialval>
+     <initialval> 2880 </initialval>
      <dervname> CircActiveTGFChange </dervname>
-     <errorlim> .1 </errorlim>
- </diffeq>
+     <errorlim> 3 </errorlim>
+ </diffeq>  <!-- ng/ml -->
+
+<diffeq>
+  <name> CirculatingLatentTGF </name>  
+     <integralname> CirculatingLatentTGF </integralname>
+     <initialval> 150000 </initialval>
+     <dervname> LatentTGFChange </dervname>
+     <errorlim> 100 </errorlim>
+ </diffeq>  <!-- ng/ml -->
 
 </equations>
 
@@ -43,19 +55,84 @@ NEED TO CONVERT TGFBETA/UNIT WT BONE TO TGFBETA/UNIT VOLUE; COMPARE TO OSTEONAL 
 THIS WILL GIVE THE "CAPTURE FACTOR"
 
 <definitions>
-<block><name> Dervs </name>
+<block>
+  <name> Dervs </name>
+
+==============
+Concentrations
+===============
   
-  <def><name> [TGFs] </name><val> CirculatingActiveTGF / 3000 MAX 0 </val></def>
-  <def><name> [TGFost] </name><val> OsteonalTGF / BMU.OsteonVolume MAX 0 </val></def>
-  <def><name> BoneBloodFlow </name><val> 250 </val></def>
-          <!-- CO=5000 ml/min; 5% CO to bone ,so 250 ml/min to bone -->
-  <def><name> CircActiveTGFExchange </name><val> .5 * ( OsteonalTGF - ( BoneBloodFlow * [TGFs] ) ) / ( BoneBloodFlow + BMU.OsteonVolume )</val></def> 
+  <def>
+     <name> [TGFs] </name>
+    <val> CirculatingActiveTGF / 3000 MAX 0 </val>
+  </def>
+
+  <def>
+    <name> [TGFost] </name>
+    <val> OsteonalTGF / BMU.OsteonVolume MAX 0 </val>
+  </def>
+
+  <def>
+     <name> [Latent] </name>
+     <val> CirculatingLatentTGF / 3000 </val>
+  </def>
+
+======================
+Circulating Active Change
+======================
+  <def>
+     <name> CircActiveTGFExchange </name>
+     <val> .5 * ( [TGFost] - [TGFs] ) </val>
+  </def> 
           <!-- here we assume that TGF can freely exchange with the serum compartment-->
-  <def><name> CircActiveTGFChange </name><val> CircActiveTGFExchange - ( CircActiveDecay * CirculatingActiveTGF ) </val></def>
-  <def><name> BoneConcentration </name><val> BoneContent / ( CalcBone.Mass + UncalcBone.Mass ) </val></def>
-  <def><name> Change </name><val> 0 * ( OB.production * ( ( .025 * 5 * LatentCirculatingShort ) + ( OB.OB * OB.TGFsecretion ) ) - ( OC.resorption * BoneConcentration ) )</val></def>
-  <def><name> OsteonalChange </name><val>  OC.resorption * BoneConcentration - CircActiveTGFExchange </val></def>
+
+  <def>
+    <name> CircActiveTGFChange </name>
+    <val> CircActiveTGFExchange + OtherTGFbeta - ( CircActiveDecay * CirculatingActiveTGF ) </val>
+  </def>
+
+=======================
+Bone Content
+=======================
+  
+  <def>
+     <name> BoneConcentration </name>
+     <val> BoneContent / ( CalcBone.Mass + UncalcBone.Mass ) </val>
+  </def>
+
+  <def>
+      <name> Change </name>
+      <val> 0 * ( OB.production * ( ( .025 * 5 * [Latent] ) + ( OB.OB * OB.TGFsecretion ) ) - ( OC.resorption * BoneConcentration ) )</val>
+  </def>
+
+============
+Latent
+============
+  <def>
+      <name> LatentTGFChange </name>
+      <val> LatentProduction - ( LatentDecay * CirculatingLatentTGF )</val>
+  </def>
+
+
+==================
+osteonal change
+==================
+  <def>
+     <name> OsteonalGain </name>
+     <val> OC.resorption * BoneConcentration </val>
+  </def>
+
+  <def>
+     <name> OsteonalLoss </name>
+     <val> CircActiveTGFExchange </val>
+  </def>
+
+  <def>
+     <name> OsteonalChange </name>
+     <val>  OsteonalGain - OsteonalLoss </val>
+  </def>
    <!-- clast resorption is is mg-->
+
 
 </block>
 </definitions>
@@ -68,16 +145,26 @@ THIS WILL GIVE THE "CAPTURE FACTOR"
         c.  
         s.  "Increased cell surface expression of receptors for transforming growth factor-beta on 
             osteoblasts from patients with Osteogenesis imperfecta."  Gebken et al, Pathbiology 68 (2000) 106-112
+
    2.  there is a positive correlation between age and number of TGFbeta receptors in blasts.  "Age-related differences in the expression of 
             receptors for TGF-beta in human osteoblast-like cells in vitro."  Batge et al, Exp Clin Endocrin Diabetes 108 (2000) 311-315
+
    3.  classically, TGFbeta is considered a macrophage deactivator.  in particular, in the onset of an infection, IFNgamma and IFNbeta, potent 
         inhibitors of clastogenesis, are secreted by immune cells to deal with the infection itself.  As the infection progresses, TGFbeta is secreted 
         and acts to clear the cytotoxic cytokines and allow tissue repair to begin.  Importantly, preincubation with TGFbeta prevents INFgamma/beta 
         from commiting precursors to macrophage cell lines.  Coincubation with TGFbeta suppresses the anti-clastic activity of the IFNgamma/beta.
         BRIEFLY, TGFbeta STABILIZES THE PRE-PRECURSOR CELL POPULATION FOR ACTIVATION BY RANK/RANKL
            (ref Fox et al "Current insights into the role of TGFbeta in bone resorption" Mol Cell Endocrin 243 (2005) 19-26)
+
    4.   IL-13 (fibrosis source in autoimmune disease) induces TGFbeta secretion
+
    5.  TGF up-regs synthesis of chondroitan sulfate, proteoglycan.  (ref 18 in "TGFbeta, bone connection")
 
+   6.  normal circulating value <5 ng/ml?  
+        ref "serum concentration of active tgfbeta is severely depressed in advanced atherosclerosis" Grainger, D, Kemp et al; Nature Medicine 1 (1995) 74-79
 
+   7.  inhibitory at concentrations >15 ng/ml in confluent culture
+
+  8.  Latent TGF has a half life of 90 minutes in circulation; active has half life of 2 minutes;
+       ref Kaminska et al TGF beta signalling and its role in tumour pathogenesis; Acto Biochemica Polonica, 52 (2005) 329-337 
 -->

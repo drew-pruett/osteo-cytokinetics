@@ -1,15 +1,16 @@
 <structure><name> RANKLsol </name>
 <variables>
 
+  <var><name> [solRANKL] </name></var>
 </variables>
 
 <equations>
 <diffeq>
   <name> RANKLsol </name>  
      <integralname> RANKLsol </integralname>
-     <initialval> 10 </initialval>
+     <initialval> .1581 </initialval>   <!-- pmol/L -->
      <dervname> Change </dervname>
-     <errorlim> .1 </errorlim>
+     <errorlim> .001 </errorlim>
  </diffeq>
 
 </equations>
@@ -17,7 +18,16 @@
 <definitions>
 <block><name>Dervs </name>
 
-<def><name> Change </name><val> 0 </val> </def>
+  <def>
+     <name> Change </name>
+     <val> 0 </val>
+  </def>
+
+  <def>
+     <name> [solRANKL] </name>
+     <val> RANKLsol / 3 </val>
+  </def>
+
 </block>
 </definitions>
 

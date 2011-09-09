@@ -16,7 +16,7 @@
 
 <definitions>
 <block><name> Dervs </name>
-  <def><name> Calcifying </name><val> .00006921 * Mass </val></def>
+  <def><name> Calcifying </name><val> .00006921 * Mass </val></def>   <!-- 10 days to turn over -->
   <def><name> Change </name><val> OB.production - Calcifying </val></def>
 </block>
 </definitions>

@@ -14,6 +14,7 @@
 <?include Biochem/RANKLsol.DES?>
 <?include Biochem/RANKLmb.DES ?>
 <?include Biochem/TGF.DES ?>
+<?include Biochem/OPG.DES ?>
 
 <?include Gross/UncalcBone.DES ?>
 <?include Gross/CalcBone.DES ?>
@@ -39,6 +40,7 @@
   <call> PreOC2.Dervs </call>
   <call> OC.Dervs </call>
   <call> TGF.Dervs </call>
+  <call> OPG.Dervs </call>
   <call> UncalcBone.Dervs </call>
   <call> CalcBone.Dervs </call>
 
