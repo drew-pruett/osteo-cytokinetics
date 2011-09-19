@@ -11,8 +11,8 @@
 <?include Cells/BMU.DES ?>
 
 <?include Biochem/MCSF.DES ?>
-<?include Biochem/RANKLsol.DES?>
-<?include Biochem/RANKLmb.DES ?>
+<?include Biochem/RANKAxis.DES?>
+<?include Biochem/RANKLsol.DES ?>
 <?include Biochem/TGF.DES ?>
 <?include Biochem/OPG.DES ?>
 
@@ -24,6 +24,7 @@
   <definitions>
   
   <block><name> Parms </name>
+    <call> RANKAxis.Parms </call>
 
   </block>
 
@@ -32,15 +33,15 @@
   <call> StrCell.Dervs </call>
   <call> PreOB.Dervs </call>
   <call> OB.Dervs </call>
-  <call> RANKLsol.Dervs </call>
+  <call> OPG.Dervs </call>
   <call> RANKLmb.Dervs </call>
+  <call> RANKAxis.Dervs </call>
   <call> BMU.Dervs </call>
   <call> MacCell.Dervs </call>
   <call> PreOC1.Dervs </call>
   <call> PreOC2.Dervs </call>
   <call> OC.Dervs </call>
   <call> TGF.Dervs </call>
-  <call> OPG.Dervs </call>
   <call> UncalcBone.Dervs </call>
   <call> CalcBone.Dervs </call>
 

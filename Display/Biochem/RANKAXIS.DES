@@ -7,8 +7,9 @@ Copyright : 2010
 By : University of Mississippi Medical Center
 Solver : Digital Human (V1.0)
 
-<panel><name> RANKAXIS </name>
+<panel><name> RankAxis</name>
 
+<structurename> RANKLAxis </structurename>
 
 <showpanelname>
   <row> 0.5 </row><col> 1.0 </col>
@@ -20,33 +21,39 @@ Solver : Digital Human (V1.0)
    <high> 19.0 </high>
    <wide> 95.0 </wide>
    <title> RANK/RANKL/OPG </title>
-<!--
-    <showgraph>
-      <row>1</row><col>1</col>
-      <high>9</high><wide>40</wide>
-      <leftmargin>15</leftmargin>
-      
+
+   <showgraph>
+      <row>1</row>
+      <col>1</col>
+      <high>9</high>
+      <wide>40</wide>
+      <leftmargin>10</leftmargin>      
       <xaxis>
         <name>System.X</name>
         <label>Minutes</label>
+        <scale><min> 0 </min><max> 60 </max></scale>
       </xaxis>
-
       <yaxis>
         <yvar>
-          <name> RANKLsol.RANKLsol</name>
-          <label>Sol RANKL</label>
+          <name> aL1 </name>
+          <label> RANKL </label>
           <linecolor>RED</linecolor>
         </yvar>
-      <yvar>
-          <name>RANKLmb.RankLmb</name>
-          <label>mb RANKL</label>
-          <linecolor>BLUE</linecolor>
+        <yvar>
+         <name> aO1 </name>
+         <label> OPG </label>
+          <linecolor> BLUE </linecolor>
         </yvar>
-         <scale><min> 0 </min><max> 20 </max></scale>
+        <yvar>
+         <name> aR1 </name>
+         <label> RANK </label>
+          <linecolor> BLUE </linecolor>
+        </yvar>
+      <scale><min> 0 </min><max> 2 </max></scale>
       </yaxis>
     </showgraph>
--->
-</groupbox>
-</panel>
 
+</groupbox>
+
+</panel>
 End

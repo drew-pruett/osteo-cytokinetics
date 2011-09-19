@@ -1,0 +1,332 @@
+ Created : 7-Feb-11
+Last Modified :
+Author : W Pruett
+Copyright : 2011-2011
+By : University of Mississippi Medical Center
+Solver : Digital Human V0.4
+Schema : DES V1.0
+
+<?xml version = '1.0' ?>
+
+<model>
+
+<title><basic> Solubility </basic></title>
+
+<structure>
+<name> Model </name>
+
+<variables> ---------------------------------------
+
+<constant><name> Kaa </name><val> .1 </val></constant>
+<constant><name> Kbb </name><val> 1 </val></constant>
+<constant><name> Kab </name><val> .01 </val></constant>
+<constant><name> Kac </name><val> .5 </val></constant>
+<constant><name> Kbc </name><val> 10 </val></constant>
+<constant><name> Kabc </name><val> 1 </val></constant>
+
+<!--<var><name>Tot_a1</name><val>10</val></parm>-->
+<parm><name>Tot_b1</name><val>5</val></parm>
+<parm><name>Tot_c1</name><val>7</val></parm>
+<var><name>a2</name></var>
+<var><name>b2</name></var>
+<var><name>c2</name></var>
+<var><name>a1</name></var>
+<var><name>b1</name></var>
+<var><name>c1</name></var>
+<var><name>SEnd</name></var>
+<var><name> init </name></var>
+
+<var><name>A1</name></var>
+<var><name>B1</name></var>
+<var><name>C1</name></var>
+<var><name>aa</name></var>
+<var><name>ab</name></var>
+<var><name>bb</name></var>
+<var><name>ac</name></var>
+<var><name>bc</name></var>
+<var><name>abc</name></var>
+
+</variables>
+
+<equations> ----------------------------------
+
+<impliciteq>
+  <name> S </name>
+  <startname> S </startname>
+  <initialval> 22 </initialval>
+  <endname> STest </endname>
+  <errorlim> .000001 </errorlim>
+</impliciteq>
+
+ <diffeq>
+   <name> Tot_a1 </name>
+   <integralname> Tot_a1 </integralname>
+   <initialval> 10 </initialval>
+   <dervname> Change </dervname>
+   <errorlim> 0.1 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions> -----------------------------------
+
+<block><name>Parms</name>
+<def><name>a1</name><val>Tot_a1</val></def>
+<def><name>b1</name><val>Tot_b1</val></def>
+<def><name>c1</name><val>Tot_c1</val></def>
+<def><name>init</name><val> a1 + b1 + c1</val></def>
+</block>
+
+
+<block><name> Dervs </name> ====================
+
+<def><name>Change</name><val>.2</val></def>
+
+
+
+<implicitmath><name> S </name>
+
+<def>
+  <name> a2 </name>
+  <val> ( Tot_a1 ) / ( 1 + ( 2 * Kaa * a1 ) + ( Kab * b1 ) + ( Kac * c1 ) + ( Kabc * b1 * c1 ) )</val>
+</def>
+
+<def>
+  <name> b2 </name>
+  <val> ( Tot_b1 ) / ( 1 + ( Kab * a2 ) + ( Kbc * c1 ) + ( 2 * Kbb * b1 ) + ( Kabc * a2 * c1 ) )</val>
+</def>
+
+<def>
+  <name> c2 </name>
+  <val> ( Tot_c1 ) / ( 1 + ( Kac * a2 ) + ( Kbc * b1 ) + ( Kabc * a2 * b1 ) )</val>
+</def>
+
+<def><name> SEnd </name><val> ( ( a1 - a2 ) ^ 2 ) + ( ( b1 - b2 ) ^ 2 ) + ( ( c1 - c2 ) ^ 2 ) </val></def>
+<def><name>STest</name><val> ABS ( SEnd - S ) </val></def>
+
+<def><name> a1 </name><val> a2 </val></def>
+<def><name> b1 </name><val> b2 </val></def>
+<def><name> c1 </name><val> c2 </val></def>
+
+</implicitmath>
+
+</block>
+
+<block>
+<name>Wrapup</name>
+
+
+<def><name> aa </name><val> Kaa * a1 * a1 </val></def>
+<def><name> ab </name><val> Kab * a1 * b1 </val></def>
+<def><name> bb </name><val> Kbb * b1 * b1 </val></def>
+<def><name> ac </name><val> Kac * a1 * c1 </val></def>
+<def><name> bc </name><val> Kbc * b1 * c1 </val></def>
+<def><name> abc </name><val> Kabc * a1 * b1 * c1 </val></def>
+
+
+<def><name> A1 </name><val> ( 2 * aa ) + ab + ac + abc + a1</val></def>
+<def><name> B1 </name><val> ( 2 * bb ) + ab + bc + abc + b1</val></def>
+<def><name> C1 </name><val> ac + abc + bc + c1</val></def>
+
+
+</block>
+</definitions>
+</structure>
+
+<math>
+  <parms> Model.Parms </parms>
+  <dervs> Model.Dervs </dervs>
+  <wrapup> Model.Wrapup </wrapup>
+</math>
+
+<control> ========================================
+
+<gofor>
+  <solutionint> 1 </solutionint>
+  <displayint> 1 </displayint>
+</gofor>
+
+<gofor>
+  <solutionint> 10 </solutionint>
+  <displayint> 1 </displayint>
+</gofor>
+
+</control>
+
+<display> =========================================
+
+<panel><name> Solubility </name>
+
+<structurename> Model </structurename>
+
+<showpanelname>
+  <row> 0.5 </row><col> 1.0 </col>
+</showpanelname>
+
+<groupbox>
+   <row> 3.0 </row><col> 1 </col>
+   <high> 12.0 </high><wide> 44 </wide>
+   <title> input </title>
+
+ <showgraph>
+  <row> 1.0 </row><col> 1.0 </col>
+  <high> 9 </high><wide> 40 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 10 </max><inc>1</inc></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> a1</name>
+      <label> Free A </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+      <name> b1</name>
+      <label> Free B </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <yvar>
+      <name> c1</name>
+      <label> Free C </label>
+      <linecolor> GREEN </linecolor>
+    </yvar>
+
+
+    <scale><min> 5 </min><max> 10 </max></scale>
+  </yaxis>
+ </showgraph>
+
+
+</groupbox>
+
+<groupbox>
+   <row> 18.0 </row><col> 1 </col>
+   <high> 11.0 </high><wide> 44 </wide>
+   <title> output </title>
+
+<showvalue>1
+  <row> 1.4 </row><col> 1 </col>
+  <name> a1 </name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> A </label>
+</showvalue>
+
+<showvalue>2
+  <row> 2.4 </row><col> 1 </col>
+  <name> b1 </name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> B </label>
+</showvalue>
+
+<showvalue>3
+  <row> 3.4 </row><col> 1 </col>
+  <name> c1 </name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> C </label>
+</showvalue>
+
+<showvalue>1
+  <row> 4.4 </row><col> 1 </col>
+  <name> aa </name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> AA </label>
+</showvalue>
+
+<showvalue>2
+  <row> 5.4 </row><col> 1 </col>
+  <name> ab </name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> AB </label>
+</showvalue>
+
+<showvalue>3
+  <row> 6.4 </row><col> 1 </col>
+  <name> bb </name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> BB </label>
+</showvalue>
+
+<showvalue>4
+  <row> 7.4 </row><col> 1 </col>
+  <name> ac </name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> AC </label>
+</showvalue>
+
+<showvalue>5
+  <row> 8.4 </row><col> 1 </col>
+  <name> bc </name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> BC </label>
+</showvalue>
+
+<showvalue>6
+  <row> 9.4 </row><col> 1 </col>
+  <name> abc </name>
+  <format><decimal> 8 </decimal> <fieldwidth>10</fieldwidth> </format>
+  <label> ABC </label>
+</showvalue>
+
+</groupbox>
+
+<groupbox>
+   <row> 3.0 </row><col> 50 </col>
+   <high> 11.0 </high><wide> 44 </wide>
+   <title> Error </title>
+
+<showvalue>3
+  <row> 4 </row><col> 1 </col>
+  <name> A1 </name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> A1 </label>
+</showvalue>
+
+<showvalue>3
+  <row> 5 </row><col> 1 </col>
+  <name> B1 </name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> B1 </label>
+</showvalue>
+
+<showvalue>3
+  <row> 6 </row><col> 1 </col>
+  <name> C1 </name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> C1 </label>
+</showvalue>
+
+
+<showvalue>3
+  <row> 1 </row><col> 1 </col>
+  <name> STest</name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> STest </label>
+</showvalue>
+
+<showvalue>3
+  <row> 2 </row><col> 1 </col>
+  <name> S</name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> S </label>
+</showvalue>
+
+<showvalue>3
+  <row> 3 </row><col> 1 </col>
+  <name> SEnd</name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> SEnd </label>
+</showvalue>
+ </groupbox>
+</panel>
+</display>
+
+</model>
+
+End                                                                                                                              
+ 
+	
+	
+Paging and Bottom Toolbar                                                                                                  

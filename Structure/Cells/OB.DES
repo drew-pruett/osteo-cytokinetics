@@ -44,20 +44,20 @@
   <def><name> MatrixPerBlast </name><val> .0000000001215 </val></def>
   <def><name> production </name> <val> OB * MatrixPerBlast * BMU.BMU</val></def>
   <def><name> Change </name><val>  1 * ( PreOB.Loss - ( kd * OB ) ) </val></def>
-  <def><name> RLmbChange </name><val> 0 * ( RANKLmbExpression - 1 ) </val></def>
-  <def><name> RANKLmb </name><val> RANKLmbExpression * OB </val></def>
+ <!-- <def><name> RLmbChange </name><val> 0 * ( RANKLmbExpression - 1 ) </val></def>-->
+ <!-- <def><name> RANKLmb </name><val> RANKLmbExpression * OB </val></def>-->
   <def><name> DailyConstruction </name><val> MatrixPerBlast * OB * BMU.BMU * 1440 </val></def>
   <def><name> OPGSecretion </name><val> 1 + ( 5 * ( TGF.[TGFost] ^ .7 ) / ( ( TGF.[TGFost] ^ .7 ) + ( 2 ^ .7 ) ) ) </val></def>
 
   <def>
      <name> RANKLsignalTarget </name>
-     <val>   </val>
+     <val> 1  </val>
   </def>
 
 
   <def>
      <name> dSignal </name>
-     <val> .005 * ( RANKLsignalTarget - RANKLmult  </val>
+     <val> .005 * ( RANKLsignalTarget - RANKLmult ) </val>
   </def>
 
 <!--<def><name> 1_25OH2D3 </name><val>1_25OH2D3.1_25_OH2D3</val></def>

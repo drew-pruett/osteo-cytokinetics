@@ -15,7 +15,7 @@ By : University of Mississippi Medical Center
 <?path Display\Tree\Biochem ?>
 
 <leaf>
-  <name> RANKAXIS </name>
+  <name> RankAxis </name>
   <label> RANK/RANKL/OPG </label>
   <parent> BIOCHEM </parent>
 </leaf>
