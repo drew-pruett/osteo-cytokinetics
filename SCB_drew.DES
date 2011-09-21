@@ -15,128 +15,176 @@ Schema : DES V1.0
 <structure>
 <name> Model </name>
 
-<variables> ---------------------------------------
+<variables>
 
-<constant><name> Kaa </name><val> .1 </val></constant>
-<constant><name> Kbb </name><val> 1 </val></constant>
-<constant><name> Kab </name><val> .01 </val></constant>
-<constant><name> Kac </name><val> .5 </val></constant>
-<constant><name> Kbc </name><val> 10 </val></constant>
-<constant><name> Kabc </name><val> 1 </val></constant>
+  <var><name> MacDiff </name></var>
+  <var><name> MacApop </name></var>
+  <var><name> MacGain </name></var>
 
-<!--<var><name>Tot_a1</name><val>10</val></parm>-->
-<parm><name>Tot_b1</name><val>5</val></parm>
-<parm><name>Tot_c1</name><val>7</val></parm>
-<var><name>a2</name></var>
-<var><name>b2</name></var>
-<var><name>c2</name></var>
-<var><name>a1</name></var>
-<var><name>b1</name></var>
-<var><name>c1</name></var>
-<var><name>SEnd</name></var>
-<var><name> init </name></var>
+  <var><name> PreOC1Diff </name></var>
+  <var><name> PreOC1Apop </name></var>
+  <var><name> PreOC1Gain </name></var>
 
-<var><name>A1</name></var>
-<var><name>B1</name></var>
-<var><name>C1</name></var>
-<var><name>aa</name></var>
-<var><name>ab</name></var>
-<var><name>bb</name></var>
-<var><name>ac</name></var>
-<var><name>bc</name></var>
-<var><name>abc</name></var>
+   <var><name> OCGain </name></var>
+   <var><name> OCLoss </name></var>
+   <var><name> NGain </name></var>
+   <var><name> NLoss </name></var>
+
+  <var><name> PreOC1Population </name></var>
+  <var><name> FusionIndex </name></var>
+  <var><name> TRAPNuc% </name></var>
+  <var><name> OCNuc </name></var>
+
+
+  <var><name> [solRANKL] </name></var>
+  <var><name> AR </name><val> 100 </val></var> <!-- total conc of RANK -->
+  <var><name> AL </name><val> 40 </val></var> <!-- total conc of RANKL -->
+  <var><name> AO </name><val> 0.001 </val></var> <!-- total conc of OPG -->
+  <var><name> aR1 </name></var> <!-- free conc of RANK -->
+  <var><name> aL1 </name></var> <!-- free conc of RANKL -->
+  <var><name> aO1 </name></var>  <!-- free conc of OPG -->
+ <var><name> aR2 </name></var> <!-- derived free conc of RANK -->
+  <var><name> aL2 </name></var> <!-- derived free conc of RANKL -->
+  <var><name> aO2 </name></var>  <!-- derived free conc of OPG -->
+  <var><name> SEnd </name></var>
+  <parm><name> KdO </name><val> .1 </val></parm> <!-- Kdiss for OPG~RANKL -->
+  <parm><name> KdR </name><val> 23 </val></parm> <!-- Kdiss for RANK~RANKL -->
+  <var><name> RL </name></var>
+
+  <var><name> TGFbeta </name><val> 1 </val></var>
+  <var><name> Knucleus </name></var>
+  <var><name> MCSF </name><val> 30 </val></var>
+  <var><name> TGFMacEffect </name></var>
 
 </variables>
 
-<equations> ----------------------------------
+<equations>
 
 <impliciteq>
   <name> S </name>
   <startname> S </startname>
-  <initialval> 22 </initialval>
+  <initialval> 0 </initialval>
   <endname> STest </endname>
-  <errorlim> .000001 </errorlim>
+  <errorlim> .01 </errorlim>
 </impliciteq>
 
- <diffeq>
-   <name> Tot_a1 </name>
-   <integralname> Tot_a1 </integralname>
-   <initialval> 10 </initialval>
-   <dervname> Change </dervname>
-   <errorlim> 0.1 </errorlim>
+<diffeq>
+  <name> RANKLsol </name>  
+     <integralname> RANKLsol </integralname>
+     <initialval> 40 </initialval>   <!-- pmol/L -->
+     <dervname> Change </dervname>
+     <errorlim> .1 </errorlim>
  </diffeq>
+
+<diffeq>
+  <name> MacCell </name>  
+     <integralname> MacCell </integralname>
+     <initialval> 2000 </initialval>
+     <dervname> MacChange </dervname>
+     <errorlim> .02 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> PreOC1 </name>  
+     <integralname> PreOC1 </integralname>
+     <initialval> 0 </initialval><!-- per cubic mm of blood -->
+     <dervname> PreOC1Change </dervname>
+     <errorlim> 1 </errorlim>
+ </diffeq>
+
+  <diffeq>
+   <name> OC </name>  <!--per BMU-->
+      <integralname> OC</integralname>
+      <initialval> 0 </initialval>
+      <dervname> OCChange </dervname>
+      <errorlim> .01 </errorlim>
+  </diffeq>
+
+  <diffeq>
+   <name> Nuclei </name> <!--per clast-->
+    <integralname> Nuclei </integralname>
+    <initialval> 0 </initialval>
+    <dervname> NucleiChange </dervname>
+    <errorlim> .001 </errorlim>
+  </diffeq>
 
 </equations>
 
-<definitions> -----------------------------------
+<definitions>
 
-<block><name>Parms</name>
-<def><name>a1</name><val>Tot_a1</val></def>
-<def><name>b1</name><val>Tot_b1</val></def>
-<def><name>c1</name><val>Tot_c1</val></def>
-<def><name>init</name><val> a1 + b1 + c1</val></def>
+<block><name> Parms </name>
+  <def><name> aL1 </name><val> RANKLsol </val></def>
+  <def><name> aR1 </name><val> AR </val></def>
+  <def><name> aO1 </name><val> AO </val></def>
+
 </block>
 
+<block><name>Dervs </name>
 
-<block><name> Dervs </name> ====================
+  <def>
+     <name> Change </name>
+     <val> 0 </val>
+  </def>
 
-<def><name>Change</name><val>.2</val></def>
-
-
+  <def><name> Knucleus </name><val> .000056 + ( .000944 * .027 / ( TGFbeta ^ 3 + .027 ) )</val></def>
+  <def><name> TGFMacEffect </name><val> TGFbeta / (TGFbeta + .1 ) + 1 </val></def>
 
 <implicitmath><name> S </name>
 
-<def>
-  <name> a2 </name>
-  <val> ( Tot_a1 ) / ( 1 + ( 2 * Kaa * a1 ) + ( Kab * b1 ) + ( Kac * c1 ) + ( Kabc * b1 * c1 ) )</val>
-</def>
-
-<def>
-  <name> b2 </name>
-  <val> ( Tot_b1 ) / ( 1 + ( Kab * a2 ) + ( Kbc * c1 ) + ( 2 * Kbb * b1 ) + ( Kabc * a2 * c1 ) )</val>
-</def>
-
-<def>
-  <name> c2 </name>
-  <val> ( Tot_c1 ) / ( 1 + ( Kac * a2 ) + ( Kbc * b1 ) + ( Kabc * a2 * b1 ) )</val>
-</def>
-
-<def><name> SEnd </name><val> ( ( a1 - a2 ) ^ 2 ) + ( ( b1 - b2 ) ^ 2 ) + ( ( c1 - c2 ) ^ 2 ) </val></def>
-<def><name>STest</name><val> ABS ( SEnd - S ) </val></def>
-
-<def><name> a1 </name><val> a2 </val></def>
-<def><name> b1 </name><val> b2 </val></def>
-<def><name> c1 </name><val> c2 </val></def>
+ <def><name> aL2 </name><val> AL * aL1 / ( aL1 + ( aL1 * aR1 / KdR ) + (aL1 *  aO1 / KdO ) ) </val></def>
+ <def><name> aR2 </name><val> AR * aR1 / ( aR1 + ( aR1 * aL2 / KdR ) ) </val></def>
+ <def><name> aO2 </name><val> AO * aO1 / ( aO1 + ( aO1 * aL2 / KdO ) ) </val></def>
+ <def><name> SEnd </name><val> ( ( aL1 - aL2 ) ^ 2 ) + ( ( aR1 - aR2 ) ^ 2 ) + ( ( aO1 - aO2 ) ^ 2 ) </val></def>
+ <def><name>STest</name><val> ( S - SEnd ) ^ 2 </val></def>
+ <def><name> aR1 </name><val> aR2 </val></def>
+ <def><name> aL1 </name><val> aL2 </val></def>
+ <def><name>  aO1 </name><val> aO2 </val></def>
 
 </implicitmath>
 
-</block>
+  <def><name> RL </name><val> aL1 * aR1 / KdR </val></def>
 
-<block>
-<name>Wrapup</name>
+  <def>
+     <name> [solRANKL] </name>
+     <val> RANKLsol / 3 </val>
+  </def>
 
+  <def><name> MacDiff </name><val> .21 * MCSF / ( MCSF + 15 ) + .95 </val></def>
+  <def><name> MacApop </name><val> .1 * MacCell </val></def>
+  <def><name> MacGain </name><val> TGFMacEffect * (MacDiff - 1 ) * MacCell </val></def>
+  <def><name> MacChange </name><val> MacGain - MacApop - MacDiff </val></def>
 
-<def><name> aa </name><val> Kaa * a1 * a1 </val></def>
-<def><name> ab </name><val> Kab * a1 * b1 </val></def>
-<def><name> bb </name><val> Kbb * b1 * b1 </val></def>
-<def><name> ac </name><val> Kac * a1 * c1 </val></def>
-<def><name> bc </name><val> Kbc * b1 * c1 </val></def>
-<def><name> abc </name><val> Kabc * a1 * b1 * c1 </val></def>
+  <def><name> FusionIndex </name><val> ( .2 * (  MCSF ^ 2 ) / ( MCSF ^ 2 + 144 ) )  * ( RL / 30 )</val></def>
+  <def><name> TRAPNuc% </name><val> ( .32 * MCSF / ( MCSF + 12 ) )  * ( RL / 30 ) </val></def>
 
+  <def><name> PreOC1Population </name><val> PreOC1 </val></def>
+  <def><name> PreOC1Apop </name><val> .1 * PreOC1 </val></def>
+  <def><name> PreOC1Diff </name><val> 0 </val></def>.000000185=.0005/2695; .0005=Preoc2.Loss/minute at ss
+  <def><name> PreOC1Change </name><val> MacDiff - PreOC1Apop - PreOC1Diff  </val> </def>
 
-<def><name> A1 </name><val> ( 2 * aa ) + ab + ac + abc + a1</val></def>
-<def><name> B1 </name><val> ( 2 * bb ) + ab + bc + abc + b1</val></def>
-<def><name> C1 </name><val> ac + abc + bc + c1</val></def>
+   <def><name> OCGain </name><val> 0 </val></def>
+   <def><name> OCLoss </name><val> 0 </val></def>
+
+  <def><name> OCNuc </name><val> FusionIndex * PreOC1 </val></def>
+   <def><name> NGain </name><val> PreOC1Diff </val></def>
+   <def><name> NLoss </name><val> Knucleus * Nuclei </val></def>
+
+   <def><name> OCChange </name><val> OCGain - OCLoss </val></def>
+   <def><name> NucleiChange </name><val> NGain - NLoss </val></def>
 
 
 </block>
 </definitions>
+
+
+<!--
+binding affinity of RANK to RANKL is 1.09e-10 M
+-->
 </structure>
 
 <math>
   <parms> Model.Parms </parms>
   <dervs> Model.Dervs </dervs>
-  <wrapup> Model.Wrapup </wrapup>
 </math>
 
 <control> ========================================
@@ -165,7 +213,7 @@ Schema : DES V1.0
 
 <groupbox>
    <row> 3.0 </row><col> 1 </col>
-   <high> 12.0 </high><wide> 44 </wide>
+   <high> 12.0 </high><wide> 100 </wide>
    <title> input </title>
 
  <showgraph>
@@ -179,27 +227,56 @@ Schema : DES V1.0
   </xaxis>
   <yaxis>
     <yvar>
-      <name> a1</name>
-      <label> Free A </label>
+      <name> aL1</name>
+      <label> Free L </label>
       <linecolor> RED </linecolor>
     </yvar>
     <yvar>
-      <name> b1</name>
-      <label> Free B </label>
+      <name> aR1</name>
+      <label> Free R </label>
       <linecolor> BLUE </linecolor>
     </yvar>
     <yvar>
-      <name> c1</name>
-      <label> Free C </label>
+      <name> aO1 </name>
+      <label> Free O </label>
       <linecolor> GREEN </linecolor>
     </yvar>
-
-
     <scale><min> 5 </min><max> 10 </max></scale>
   </yaxis>
  </showgraph>
 
+==================
 
+ <showgraph>
+  <row> 1.0 </row><col> 1.0 </col>
+  <high> 9 </high><wide> 40 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 10 </max><inc>1</inc></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> MacCell </name>
+      <label> MacCell </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+      <name> PreOC1 </name>
+      <label> PreOC1 </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <yvar>
+      <name> OCNuc </name>
+      <label> OCNuc </label>
+      <linecolor> GREEN </linecolor>
+    </yvar>
+    <scale><min> 5 </min><max> 10 </max></scale>
+  </yaxis>
+ </showgraph>
+
+=====================
 </groupbox>
 
 <groupbox>
@@ -209,124 +286,59 @@ Schema : DES V1.0
 
 <showvalue>1
   <row> 1.4 </row><col> 1 </col>
-  <name> a1 </name>
+  <name> aL1 </name>
   <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
-  <label> A </label>
+  <label> Free L </label>
 </showvalue>
 
 <showvalue>2
   <row> 2.4 </row><col> 1 </col>
-  <name> b1 </name>
+  <name> aR1 </name>
   <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
-  <label> B </label>
+  <label> Free R </label>
 </showvalue>
 
 <showvalue>3
   <row> 3.4 </row><col> 1 </col>
-  <name> c1 </name>
+  <name> aO1 </name>
   <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
-  <label> C </label>
+  <label> Free O </label>
 </showvalue>
 
 <showvalue>1
   <row> 4.4 </row><col> 1 </col>
-  <name> aa </name>
+  <name> RL </name>
   <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
-  <label> AA </label>
+  <label> R~L </label>
+</showvalue>
+
+
+<showvalue>1
+  <row> 6.4 </row><col> 1 </col>
+  <name> AL </name>
+  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
+  <label> Tot L </label>
 </showvalue>
 
 <showvalue>2
-  <row> 5.4 </row><col> 1 </col>
-  <name> ab </name>
+  <row> 7.4 </row><col> 1 </col>
+  <name> AR </name>
   <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
-  <label> AB </label>
+  <label> Tot R </label>
 </showvalue>
 
 <showvalue>3
-  <row> 6.4 </row><col> 1 </col>
-  <name> bb </name>
-  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
-  <label> BB </label>
-</showvalue>
-
-<showvalue>4
-  <row> 7.4 </row><col> 1 </col>
-  <name> ac </name>
-  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
-  <label> AC </label>
-</showvalue>
-
-<showvalue>5
   <row> 8.4 </row><col> 1 </col>
-  <name> bc </name>
+  <name> AO </name>
   <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
-  <label> BC </label>
-</showvalue>
-
-<showvalue>6
-  <row> 9.4 </row><col> 1 </col>
-  <name> abc </name>
-  <format><decimal> 8 </decimal> <fieldwidth>10</fieldwidth> </format>
-  <label> ABC </label>
+  <label> Tot O </label>
 </showvalue>
 
 </groupbox>
-
-<groupbox>
-   <row> 3.0 </row><col> 50 </col>
-   <high> 11.0 </high><wide> 44 </wide>
-   <title> Error </title>
-
-<showvalue>3
-  <row> 4 </row><col> 1 </col>
-  <name> A1 </name>
-  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
-  <label> A1 </label>
-</showvalue>
-
-<showvalue>3
-  <row> 5 </row><col> 1 </col>
-  <name> B1 </name>
-  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
-  <label> B1 </label>
-</showvalue>
-
-<showvalue>3
-  <row> 6 </row><col> 1 </col>
-  <name> C1 </name>
-  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
-  <label> C1 </label>
-</showvalue>
-
-
-<showvalue>3
-  <row> 1 </row><col> 1 </col>
-  <name> STest</name>
-  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
-  <label> STest </label>
-</showvalue>
-
-<showvalue>3
-  <row> 2 </row><col> 1 </col>
-  <name> S</name>
-  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
-  <label> S </label>
-</showvalue>
-
-<showvalue>3
-  <row> 3 </row><col> 1 </col>
-  <name> SEnd</name>
-  <format><decimal> 8 </decimal><fieldwidth>10</fieldwidth></format>
-  <label> SEnd </label>
-</showvalue>
- </groupbox>
 </panel>
 </display>
 
 </model>
 
 End                                                                                                                              
- 
-	
-	
-Paging and Bottom Toolbar                                                                                                  
+                                                                             
