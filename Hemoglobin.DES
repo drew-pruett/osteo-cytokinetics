@@ -12,19 +12,33 @@
 <constant><name> PO2SATURATED </name><val> 120 </val></constant>
 <constant><name> O2SOLUBILITY </name><val> 0.00003 </val></constant>
 
-<constant><name> TEMPNORM </name><val> 37.0 </val></constant>
-<constant><name> PHNORM </name><val> 7.40 </val></constant>
-<constant><name> CO2NORM </name><val> 40.0 </val></constant>
+<parm><name> Temp </name><val> 37 </val></parm>
+<constant><name> NORMTEMP </name><val> 37.0 </val></constant>
+<constant><name> NORMPH </name><val> 7.40 </val></constant>
+<constant><name> NORMCO2 </name><val> 40.0 </val></constant>
+<constant><name> NORMpCO2 </name><val> 0.0 </val></constant>
+<constant><name> NORMO2 </name><val> 40.0 </val></constant>
+
 <constant><name> CONORM </name><val> 0.0 </val></constant>
 
-<var><name> pH </name></var>
-<var><name> Temp </name></var>
+<var><name> pH </name><val> 7.4 </val></var>
+<var><name> alphaO2 </name></var>
+<var><name> alphaCO2 </name></var>
 
 <var><name> Del </name></var>
-<var><name> Log </name></var>
+<var><name> DelpH </name></var>
+<var><name> DelCO2 </name></var>
+<var><name> DelDPG </name></var>
 
 <parm><name> P50Basic </name><val> 26.6 </val></parm>
-<var><name> P50 </name></var>
+<var><name> P50_1 </name></var>
+<var><name> P50_2 </name></var>
+<var><name> P50_3 </name></var>
+<var><name> P50_4 </name></var>
+<var><name> C50_1 </name></var>
+<var><name> C50_2 </name></var>
+<var><name> C50_3 </name></var>
+<var><name> C50_4 </name></var>
 
 <var><name> ScaleForSat </name></var>
 <var><name> Sat </name></var>
@@ -35,20 +49,26 @@
 <var><name> K </name></var>
 
 =========================
+<var><name> [DPG] </name><val> .00465 </val></var>
+<var><name> NORMDPG </name><val> .00465 </val></var>
 
 <var><name> [Hb] </name></var>
 <var><name> [HbCO2] </name></var>
 <var><name> [HbO2] </name></var>
 <var><name> SHbO2 </name></var>
 <var><name> SHbCO2 </name></var>
+<var><name> SHbO2kin </name></var>
+<var><name> SHbCO2kin </name></var>
 
-<var><name> [CO2] </name></var>
-<var><name> pCO2 </name></var>
-<var><name> [O2] </name></var>
-<var><name> pO2 </name></var>
+<var><name> [CO2] </name><val> .03 </val></var>
+<var><name> pCO2 </name><val> .03 </val></var>
+<var><name> [O2] </name><val> 56 </val></var>
+<var><name> pO2 </name><val> 40 </val></var>
 <var><name> [H2CO3] </name></var>
 <var><name> [HCO3-] </name></var>
 <var><name> [H+] </name></var>
+<var><name> [H+0] </name></var>
+
 <var><name> [HbNH2] </name></var>
 <var><name> [HbNHCOOH] </name></var>
 <var><name> [HbNHCOO-] </name></var>
@@ -59,14 +79,40 @@
 <var><name> [HbNH3+] </name></var>
 <var><name> [O2HbNH3+] </name></var>
 
+<var><name> KHbO2 </name></var>
+<var><name> KHbCO2 </name></var>
+<parm><name> Rrbc </name><val> .69 </val></parm>
+<parm><name> Wrbc </name><val> .65 </val></parm>
+
 <var><name> [O2]local </name></var>
 <var><name> [CO2]local </name></var>
+<var><name> O2Free </name></var>
+<var><name> CO2Free </name></var>
+<var><name> O2Bd </name></var>
+<var><name> CO2Bd </name></var>
+<var><name> O2Total </name></var>
+<var><name> CO2Total </name></var>
+<var><name> CO2Bicarb </name></var>
+<var><name> CO2Content </name></var>
+<var><name> O2freepl1 </name></var>
+<var><name> O2freepl2 </name></var>
+<var><name> O2freerbc1 </name></var>
+<var><name> O2freerbc2 </name></var>
+
 
 <var><name> K1 </name><val> .00135 </val></var>
 <var><name> K2 </name><val> 29.5 </val></var>
 <var><name> K3 </name><val> 25.1 </val></var>
 <var><name> K4 </name></var>
+<var><name> KK4 </name></var>
+
 <var><name> Kratio </name></var>
+<var><name> Kratio10 </name></var>
+<var><name> Kratio11 </name></var>
+<var><name> Kratio12 </name></var>
+<var><name> Kratio20 </name></var>
+<var><name> Kratio21 </name></var>
+<var><name> Kratio22 </name></var>
 
 <var><name> k1 </name><val> .00055 </val></var>
 <var><name> k2 </name><val> .000001 </val></var>
@@ -81,11 +127,21 @@
 <var><name> n3 </name></var>
 <var><name> n4 </name></var>
 
-<parm><name> NormDPG </name><val> .00465 </val></parm>
+<var><name> Term1 </name></var>
+<var><name> Term2 </name></var>
+<var><name> Term3 </name></var>
+<var><name> Term4 </name></var>
+<var><name> Term10 </name></var>
+<var><name> Term20 </name></var>
+<var><name> Term30 </name></var>
+<var><name> Term40 </name></var>
+<var><name> Term5 </name></var>
+
+<parm><name> Wb1 </name><val> .094 </val></parm>
 <parm><name> Wp1 </name><val> .094 </val></parm>
-<parm><name> Wrbc </name><val> 0.65 </val></parm>
 <parm><name> nhill </name><val> 2.7 </val></parm>
 <parm><name> Hbrbc </name><val> .00518 </val></parm>
+<parm><name> Hct </name><val> .45 </val></parm>
 
 <var><name> </name></var>
 
@@ -97,39 +153,31 @@
 
 <block><name> Rates </name>
 
-<def>
-  <name> Del </name>
-  <val> Temp - TEMPNORM </val>
-</def>
+<def><name> Del </name><val> Temp - NORMTEMP </val></def>
+<def><name> DelpH </name><val> pH - NORMPH </val></def>
+<def><name> DelCO2 </name><val> [CO2] - NORMCO2 </val></def>
+<def><name> DelDPG </name><val> .0001 </val></def>
 
-<def>
-  <name> DelpH </name>
-  <val> pH - BloodpH.ArtyspH </val>
-</def>
-
+<def><name> alphaO2 </name><val>  .000001 * ( 1.37 - ( 0.0137 * Del ) ) + ( 0.00058 * ( Del ^ 2 ) ) </val></def>
+<def><name> alphaCO2 </name><val> .000001 * ( 30.7 - ( 0.57 * Del ) ) + ( 0.02 * ( Del ^ 2 ) ) </val></def>
 
 <def><name> [H+] </name><val> 10 ^ ( - pH ) </val></def>
 <def><name> [H+0] </name><val> 10 ^ ( - NORMPH ) </val></def>
 
-<def><name> T1 </name><val> K2 * ( 1 + ( k2 / [H+] ) ) </val></def>
-<def><name> T2 </name><val> K3 * ( 1 + ( k3 / [H+] ) )  </val></def>
-<def><name> T3 </name><val> 1 + ( [H+] / k5 )  </val></def>
-<def><name> T4 </name><val> 1 + ( [H+] / k6 ) </val></def>
-<def><name> T10 </name><val> K2 * ( 1 + ( k2 / [H+0] ) ) </val></def>
-<def><name> T20 </name><val> K3 * ( 1 + ( k3 / [H+0] ) )  </val></def>
-<def><name> T30 </name><val> 1 + ( [H+0] / k5 )  </val></def>
-<def><name> T40 </name><val> 1 + ( [H+0] / k6 ) </val></def>
-<def><name> T5 </name><val> ( ( [H+] / [H+0] ) ^ n1 ) * ( ( NORMCO2 ) ^ n2 ) * ( ( DPG / NORMDPG ) ^ n3 ) * ( ( Temp / NORMTEMP ) ^ n4 ) </val></def>
-
-
-<def><name> alphaO2 </name><val>  .000001 * ( 1.37 - ( 0.0137 * Del ) + ( 0.00058 * ( Del ^ 2 ) ) </val></def>
-<def><name> alphaCO2 </name><val> .000001 * ( 30.7 - ( 0.57 * Del ) + ( 0.02 * ( Del ^ 2 ) ) </val></def>
+<def><name> Term1 </name><val> K2 * ( 1 + ( k2 / [H+] ) ) </val></def>
+<def><name> Term2 </name><val> K3 * ( 1 + ( k3 / [H+] ) )  </val></def>
+<def><name> Term3 </name><val> 1 + ( [H+] / k5 )  </val></def>
+<def><name> Term4 </name><val> 1 + ( [H+] / k6 ) </val></def>
+<def><name> Term10 </name><val> K2 * ( 1 + ( k2 / [H+0] ) ) </val></def>
+<def><name> Term20 </name><val> K3 * ( 1 + ( k3 / [H+0] ) )  </val></def>
+<def><name> Term30 </name><val> 1 + ( [H+0] / k5 )  </val></def>
+<def><name> Term40 </name><val> 1 + ( [H+0] / k6 ) </val></def>
 
 <def><name> Kratio10 </name><val> ( Term10 * NORMCO2 + Term30 ) / ( Term20 * NORMCO2 + Term40 ) </val></def>
 <def><name> Kratio11 </name><val> ( Term1 * [CO2] + Term3 ) / ( Term2 * [CO2] + Term4 ) </val></def>
 <def><name> Kratio12 </name><val> ( Term10 * NORMpCO2 * alphaCO2 + Term30 ) / ( Term20 * NORMpCO2 * alphaCO2 + Term40 ) </val></def>
 <def><name> k4 </name><val> ( Kratio10 / NORMO2 ) ^ n0 </val></def>
-<def><name> KK4 </name><val> ( k4 / NORMO2 ) ^ n0 M</val></def>
+<def><name> KK4 </name><val> ( k4 / NORMO2 ) ^ n0 </val></def>
 
 <def><name> Kratio20 </name><val> Kratio10 / KK4 </val></def>
 <def><name> Kratio21 </name><val> Kratio11 / KK4 </val></def>
@@ -145,16 +193,43 @@
 <def><name> C50_3 </name><val> alphaO2 * P50_3 </val></def>
 <def><name> C50_4 </name><val> alphaO2 * P50_4 </val></def>
 
-<def><name> n1 </name><val> ( LOG10 ( Kratio21 ) - ( nhill * LOG10 ( C501 ) ) ) / DelpH <val></def>
-<def><name> n2 </name><val> ( LOG10 ( Kratio22 ) - ( nhill * LOG10 ( C502 ) ) ) / ( LOG10 NORMCO2 - LOG10 [CO2] ) <val></def>
-<def><name> n3 </name><val>1 <val></def>
-<def><name> n4 </name><val> ( LOG10 ( Kratio20 ) - ( nhill * LOG10 ( C504 ) ) ) / ( LOG10 NORMTEMP - LOG10 Temp )  <val></def>
+<if><test> DelpH NE 0 </test>
+<true>
+<def><name> n1 </name><val> ( LOG10 ( Kratio21 ) - ( nhill * LOG10 ( C50_1 ) ) ) / DelpH </val></def>
+</true>
+<false>
+<def><name> n1 </name><val> 1 </val></def>
+</false>
+</if>
 
-<def><name> K4 </name><val> k4 * ( ( [O2] / NORMO2 ) ^ n0 ) * ( ( [H+] / ( - LOG10 NORMPH) ) ^ ( - n1 ) )  * ( ( [CO2] / NORMCO2 ) ^ ( - n2 ) ) * ( ( [DPG] / NormDPG] ) ^ ( n3 ) ) * ( ( Temp / NORMTEMP) ^ ( - n4) )</val></def>
+<if><test> DelCO2 NE 0 </test>
+<true>
+<def><name> n2 </name><val> ( LOG10 ( Kratio22 ) - ( nhill * LOG10 ( C50_2 ) ) ) / ( LOG10 NORMCO2 - LOG10 [CO2] ) </val></def>
+</true>
+<false>
+<def><name> n2 </name><val> 1 </val></def>
+</false>
+</if>
+
+<def><name> n3 </name><val>1 </val></def>
+
+<if><test> Del NE 0 </test>
+<true>
+<def><name> n4 </name><val> ( LOG10 ( Kratio20 ) - ( nhill * LOG10 ( C50_4 ) ) ) / ( LOG10 NORMTEMP - LOG10 Temp )  </val></def>
+</true>
+<false>
+<def><name> n4 </name><val> 1 </val></def>
+</false>
+</if>
+
+
+<def><name> K4 </name><val> k4 * ( ( [O2] / NORMO2 ) ^ n0 ) * ( ( [H+] / ( - LOG10 NORMPH ) ) ^ ( - n1 ) )  * ( ( [CO2] / NORMCO2 ) ^ ( - n2 ) ) * ( ( [DPG] / NORMDPG ) ^ ( n3 ) ) * ( ( Temp / NORMTEMP ) ^ ( - n4 ) )</val></def>
 <def><name> Wb1 </name><val> ( 1 - Hct ) * Wp1 + ( Hct * Wrbc ) </val></def>
 
-<def><name> KHbO2 </name><val> K4 * ( Term2 * [CO2] + Term4 ) / ( Term1 * CO2 + Term3) </val></def>
-<def><name> KHbCO2 </name><val> ( Term2 * [O2] * K4 + Term1 ) / ( Term4 * O2 * K4 + Term3 ) </val></def>
+<def><name> Term5 </name><val> ( ( [H+] / [H+0] ) ^ n1 ) * ( ( NORMCO2 ) ^ n2 ) * ( ( [DPG] / NORMDPG ) ^ n3 ) * ( ( Temp / NORMTEMP ) ^ n4 ) </val></def>
+
+<def><name> KHbO2 </name><val> K4 * ( Term2 * [CO2] + Term4 ) / ( Term1 * [CO2] + Term3 ) </val></def>
+<def><name> KHbCO2 </name><val> ( Term2 * [O2] * K4 + Term1 ) / ( Term4 * [O2] * K4 + Term3 ) </val></def>
 <def><name> SHbO2 </name><val> KHbO2 * [O2] / ( KHbO2 * [O2] + 1 ) </val></def>
 <def><name> SHbCO2 </name><val> KHbCO2 * [CO2] / ( KHbCO2 * [CO2] + 1 )  </val></def>
 
@@ -173,37 +248,37 @@
 <def><name> CO2Total </name><val> CO2Free + CO2Bd + CO2Bicarb  </val></def>
 <def><name> CO2Content </name><val> 2225.6 * CO2Total </val></def>
 
-<def><name> [Hb] </name><val> ( ( K2 * [CO2] * ( 1 + ( k2 / [H+] ) + 1 + ( [H+] / k5 ) ) ) + ( K4 * [O2] * ( K3 * [CO2] * ( 1 + ( k3 / [H+] ) ) ) ) + ( 1 + ( [H+] / k6 ) ) ) * [HmNH2] * 4 </val></def>
-<def><name> [HbO2] </name><val> ( K4 * [O2] * ( K3 * [CO2] * ( 1 + ( k3 / [H+] ) ) ) + ( 1 + ( [H+] / k6 ) ) ) ) * [HmNH2] * 4 </val></def>
-<def><name> [HbCO2] </name><val> ( K2 * [CO2] * ( 1 + ( k2 / [H+] ) ) + ( K4 * [O2] * ( K3 * [CO2] * ( 1 + ( k3 / [H+] ) ) ) ) ) * [HmNH2] * 4 </val></def>
+<!--<def><name> [Hb] </name><val> ( ( K2 * [CO2] * ( 1 + ( k2 / [H+] ) + 1 + ( [H+] / k5 ) ) ) + ( K4 * [O2] * ( K3 * [CO2] * ( 1 + ( k3 / [H+] ) ) ) ) + ( 1 + ( [H+] / k6 ) ) ) * [HbNH2] * 4 </val></def>
+<def><name> [HbO2] </name><val> ( K4 * [O2] * ( K3 * [CO2] * ( 1 + ( k3 / [H+] ) ) ) + ( 1 + ( [H+] / k6 ) ) ) * [HbNH2] * 4 </val></def>
+<def><name> [HbCO2] </name><val> ( K2 * [CO2] * ( 1 + ( k2 / [H+] ) ) + ( K4 * [O2] * ( K3 * [CO2] * ( 1 + ( k3 / [H+] ) ) ) ) ) * [HbNH2] * 4 </val></def>-->
 
-<def><name> HbNH2 </name></val> Hbrbc / ( ( Term1 * [CO2] + Term3 ) + K4 * [O2] * ( Term2 *CO2 + Term4 ) ) </val></def>
-<def><name> HbNH3p </name></val> HbNH2 * [H+] / k5</val></def>
-<def><name> O2HbNH2 </name></val> K4 * [O2] * [HbNH2] </val></def>
-<def><name> O2HbNH3p </name></val> [O2HbNH2] * [H+] / k6</val></def>
-<def><name> HbNHCOOH </name></val> K2 * [CO2] * [HbNH2] </val></def>
-<def><name> HbNHCOOm </name></val> k2 * [HbNHCOOH] / [H+]</val></def>
-<def><name> O2HbNHCOOH </name></val> K3 * [CO2] * [O2HbNH2] </val></def>
-<def><name> O2HbNHCOOm </name></val> k3dp * [O2HbNHCOOH] / [H+]</val></def>
-<def><name> SHbO2kin </name></val> ( [O2HbNH2] + [O2HbNH3+] + [O2HbNHCOOH] + [O2HbNHCOO-] ) / Hbrbc </val></def>
-<def><name> SHbCO2kin </name></val> ( [HbNHCOOH]+[HbNHCOO-] + [O2HbNHCOOH] + [O2HbNHCOO-] ) / Hbrbc</val></def>
+<def><name> [HbNH2] </name><val> Hbrbc / ( ( Term1 * [CO2] + Term3 ) + K4 * [O2] * ( Term2 * [CO2] + Term4 ) ) </val></def>
+<def><name> [HbNH3+] </name><val> [HbNH2] * [H+] / k5</val></def>
+<def><name> [O2HbNH2] </name><val> K4 * [O2] * [HbNH2] </val></def>
+<def><name> [O2HbNH3+] </name><val> [O2HbNH2] * [H+] / k6</val></def>
+<def><name> [HbNHCOOH] </name><val> K2 * [CO2] * [HbNH2] </val></def>
+<def><name> [HbNHCOO-] </name><val> k2 * [HbNHCOOH] / [H+]</val></def>
+<def><name> [O2HbNHCOOH] </name><val> K3 * [CO2] * [O2HbNH2] </val></def>
+<def><name> [O2HbNHCOO-] </name><val> k3 * [O2HbNHCOOH] / [H+]</val></def>
+<def><name> SHbO2kin </name><val> ( [O2HbNH2] + [O2HbNH3+] + [O2HbNHCOOH] + [O2HbNHCOO-] ) / Hbrbc </val></def>
+<def><name> SHbCO2kin </name><val> ( [HbNHCOOH] + [HbNHCOO-] + [O2HbNHCOOH] + [O2HbNHCOO-] ) / Hbrbc</val></def>
 
-<def><name> O2freepl1 </name></val> Wpl * ( 1 - Hct ) * alphaO2 * pO2</val></def>
-<def><name> O2freepl2 </name></val> 2225.6 * O2freepl1 </val></def>
-<def><name> O2freerbc1 </name></val>  Wrbc * Hct * alphaO2 * pO2</val></def>
-<def><name> O2freerbc2 </name></val> 2225.6 * O2 freerbc1</val></def>
-<def><name> O2boundrbc1 </name></val>  4 * Hct * Hbrbc * SHbO2</val></def>
-<def><name> O2boundrbc2 </name></val> 2225.6 * O2boundrbc1 </val></def>
-<def><name> CO2freepl1 </name></val> Wpl * ( 1 - Hct ) * alphaCO2 * pCO2</val></def>
-<def><name> CO2freepl2 </name></val> 2225.6 * CO2freepl1</val></def>
-<def><name> CO2freerbc1 </name></val>  Wrbc * Hct * alphaCO2 * pCO2</val></def>
-<def><name> CO2freerbc2 </name></val> 2225.6 * CO2freerbc1</val></def>
-<def><name> CO2bicarbpl1 </name></val> Wpl * ( 1 - Hct ) * K1 * alphaCO2 * pCO2 / Hppl</val></def>
-<def><name> CO2bicarbpl2 </name></val> 2225.6 * CO2bicarbpl1 </val></def>
-<def><name> CO2bicarbrbc1 </name></val> Wrbc * Hct * Rrbc * K1 * alphaCO2 * pCO2/Hppl</val></def>
-<def><name> CO2bicarbrbc2 </name></val> 2225.6 * CO2bicarbrbc1</val></def>
-<def><name> CO2boundrbc1 </name></val>  4 * Hct *Hbrbc * SHbCO2</val></def>
-<def><name> CO2boundrbc2 </name></val>  2225.6 * CO2boundrbc1</val></def>
+<def><name> O2freepl1 </name><val> Wp1 * ( 1 - Hct ) * alphaO2 * pO2</val></def>
+<def><name> O2freepl2 </name><val> 2225.6 * O2freepl1 </val></def>
+<def><name> O2freerbc1 </name><val>  Wrbc * Hct * alphaO2 * pO2</val></def>
+<def><name> O2freerbc2 </name><val> 2225.6 * O2freerbc1</val></def>
+<def><name> O2boundrbc1 </name><val>  4 * Hct * Hbrbc * SHbO2</val></def>
+<def><name> O2boundrbc2 </name><val> 2225.6 * O2boundrbc1 </val></def>
+<def><name> CO2freepl1 </name><val> Wp1 * ( 1 - Hct ) * alphaCO2 * pCO2</val></def>
+<def><name> CO2freepl2 </name><val> 2225.6 * CO2freepl1</val></def>
+<def><name> CO2freerbc1 </name><val>  Wrbc * Hct * alphaCO2 * pCO2</val></def>
+<def><name> CO2freerbc2 </name><val> 2225.6 * CO2freerbc1</val></def>
+<def><name> CO2bicarbpl1 </name><val> Wp\1 * ( 1 - Hct ) * K1 * alphaCO2 * pCO2 / Hppl</val></def>
+<def><name> CO2bicarbpl2 </name><val> 2225.6 * CO2bicarbpl1 </val></def>
+<def><name> CO2bicarbrbc1 </name><val> Wrbc * Hct * Rrbc * K1 * alphaCO2 * pCO2/Hppl</val></def>
+<def><name> CO2bicarbrbc2 </name><val> 2225.6 * CO2bicarbrbc1</val></def>
+<def><name> CO2boundrbc1 </name><val>  4 * Hct * Hbrbc * SHbCO2</val></def>
+<def><name> CO2boundrbc2 </name><val>  2225.6 * CO2boundrbc1</val></def>
 
 </block>
 
@@ -215,8 +290,8 @@
 </structure>
 
 <math>
-  <dervs> Model.Rates </dervs>
-  <dervs> Model.Calculation </dervs>
+  <dervs> HgbProps.Rates </dervs>
+  <wrapup> HgbProps.Calculation </wrapup>
 </math>
 
 <control> ========================================
